@@ -1,0 +1,101 @@
+@font-face {
+  font-family: 'StencilFont';
+  src: url('STENCIL.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Candara';
+  src: url('Candara.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+body *{
+  font-family: 'Candara', sans-serif;
+  cursor: url('../knife.png'), auto;
+
+}
+
+h1 {
+  font-weight: 900;
+}
+
+body {
+  background-color: mistyrose;
+}
+
+
+.title {
+  width: 85%;
+  margin: 0 auto;
+  font-size: 57px;
+  font-family: 'StencilFont', serif;
+  color: firebrick;
+  text-align: center;
+}
+
+.paratext {
+  width: 83%;
+  margin: 0 auto;
+  padding-top: 5px;  
+}
+
+.center {
+  width: 83%;
+  margin: 0 auto;
+  padding-top: 10px;  
+  text-align: center;
+  font-weight: bold;
+}
+
+.heading {
+  width: 83%;
+  padding-top: 10px;
+  margin: 0 auto;
+  font-size: 30px;
+  font-weight: bold;
+}
+
+.vg-tooltip {
+  position: absolute !important;
+  transform: translate(50px, 50px) !important; 
+  pointer-events: none;
+  font-size: 15px !important;
+  background-color: snow !important;
+}
+
+.page {
+  width: 1500px;
+  background-color: snow;
+  margin: auto;
+  padding: 50px;
+  padding-top: 35px;
+}
+
+.vis-container {
+  width: 100%;
+}
+
+.description h2,
+h1 {
+  margin-top: 0px;
+}
+
+.description-right {
+  padding-left: 20px;
+}
+
+.description-left {
+  padding-right: 20px;
+}
+
+.pure-g {
+  margin-bottom: 40px;
+}
+
+.small-font {
+  font-size: 14px;
+}
+
+

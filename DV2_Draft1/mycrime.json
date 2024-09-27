@@ -1,0 +1,84 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {
+    "text": "Total Crime per 10,000 Population (2022)",
+    "font": "Candara",
+    "fontSize": 25
+  },
+  "width": 1000,
+  "height": 450,
+  "projection": { "type": "equalEarth" },
+  "data": {
+    "url": "my.topojson",
+    "format": { "type": "topojson", "feature": "my" }
+  },
+  "transform": [
+    {
+      "lookup": "properties.name",
+      "from": {
+        "data": {
+          "url": "crime2022.csv"
+        },
+        "key": "State",
+        "fields": ["Year", "TotalCrime", "Assault Crime", "Property Crime", "Population"]
+      }
+    },
+    {
+      "calculate": "datum.TotalCrime/datum.Population * 100",
+      "as": "Total Crime per 10,000 population"
+    }
+  ],
+  "mark": { "type": "geoshape" , "stroke": "black", "strokeWidth": 0.2 },
+  "encoding": {
+    
+    "color": {
+      "condition": {
+        "test": "datum.properties.name === 'Kuala Lumpur'", 
+        "value": "#6a0a0a" 
+      },
+      "field": "Total Crime per 10,000 population",
+      "type": "quantitative",
+      "scale": {
+        "type": "threshold",
+        "domain": [120, 140, 160, 180, 200],
+        "range": ["#fee5d9","#fcbba1", "#fc9272","#fb6a4a","#de2d26","#a50f15"] 
+      },
+      "legend": {
+        "title": "Crime Rate",
+        "padding": 20, 
+        "offset": 20,  
+        "orient": "right"
+      }
+    },
+    "tooltip": [
+      { "field": "properties.name", "type": "nominal", "title": "State" },
+      { "field": "TotalCrime", "type": "quantitative", "title": "Total Crimes" },
+      {
+        "field": "Total Crime per 10,000 population",
+        "type": "quantitative",
+        "format": ".2f",
+        "title": "Crime Rate per 10,000"
+      }
+    ]
+  },
+  "config": {
+    "style" :{
+      "guide-label": {
+        "font": "Candara",
+        "fontSize": 20
+      }, 
+      "guide-title": {
+        "font": "Candara",
+        "fontSize": 20
+      },
+      "text": {
+        "font": "Candara",
+        "fontSize": 20
+      }
+    },
+    "view" :{
+      "fill": "azure"
+    },
+    "background": "snow" 
+  }
+}
