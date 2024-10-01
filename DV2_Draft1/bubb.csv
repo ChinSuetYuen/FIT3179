@@ -1,0 +1,99 @@
+State,Crime,Count
+Johor,Sexual Violence,147
+Kedah,Sexual Violence,159
+Kelantan,Sexual Violence,98
+Melaka,Sexual Violence,59
+Negeri Sembilan,Sexual Violence,65
+Pahang,Sexual Violence,118
+Perak,Sexual Violence,100
+Perlis,Sexual Violence,31
+Pulau Pinang,Sexual Violence,124
+Sabah,Sexual Violence,197
+Sarawak,Sexual Violence,119
+Selangor,Sexual Violence,354
+Terengganu,Sexual Violence,66
+Kuala Lumpur,Sexual Violence,75
+Johor,Assault,333
+Kedah,Assault,302
+Kelantan,Assault,215
+Melaka,Assault,125
+Negeri Sembilan,Assault,153
+Pahang,Assault,192
+Perak,Assault,323
+Perlis,Assault,33
+Pulau Pinang,Assault,405
+Sabah,Assault,169
+Sarawak,Assault,306
+Selangor,Assault,841
+Terengganu,Assault,102
+Kuala Lumpur,Assault,308
+Johor,Murder,30
+Kedah,Murder,15
+Kelantan,Murder,6
+Melaka,Murder,5
+Negeri Sembilan,Murder,9
+Pahang,Murder,11
+Perak,Murder,27
+Perlis,Murder,0
+Pulau Pinang,Murder,10
+Sabah,Murder,24
+Sarawak,Murder,22
+Selangor,Murder,60
+Terengganu,Murder,4
+Kuala Lumpur,Murder,17
+Johor,Robbery,463
+Kedah,Robbery,417
+Kelantan,Robbery,129
+Melaka,Robbery,75
+Negeri Sembilan,Robbery,153
+Pahang,Robbery,74
+Perak,Robbery,320
+Perlis,Robbery,18
+Pulau Pinang,Robbery,408
+Sabah,Robbery,126
+Sarawak,Robbery,141
+Selangor,Robbery,1565
+Terengganu,Robbery,51
+Kuala Lumpur,Robbery,649
+Johor,House break-ins,767
+Kedah,House break-ins,1130
+Kelantan,House break-ins,472
+Melaka,House break-ins,375
+Negeri Sembilan,House break-ins,382
+Pahang,House break-ins,423
+Perak,House break-ins,724
+Perlis,House break-ins,101
+Pulau Pinang,House break-ins,627
+Sabah,House break-ins,1297
+Sarawak,House break-ins,891
+Selangor,House break-ins,2415
+Terengganu,House break-ins,439
+Kuala Lumpur,House break-ins,542
+Johor,Vehicles Theft,1681
+Kedah,Vehicles Theft,1268
+Kelantan,Vehicles Theft,741
+Melaka,Vehicles Theft,254
+Negeri Sembilan,Vehicles Theft,428
+Pahang,Vehicles Theft,418
+Perak,Vehicles Theft,842
+Perlis,Vehicles Theft,63
+Pulau Pinang,Vehicles Theft,872
+Sabah,Vehicles Theft,523
+Sarawak,Vehicles Theft,987
+Selangor,Vehicles Theft,4254
+Terengganu,Vehicles Theft,270
+Kuala Lumpur,Vehicles Theft,1845
+Johor,Other Thefts,1041
+Kedah,Other Thefts,1360
+Kelantan,Other Thefts,545
+Melaka,Other Thefts,404
+Negeri Sembilan,Other Thefts,594
+Pahang,Other Thefts,648
+Perak,Other Thefts,924
+Perlis,Other Thefts,156
+Pulau Pinang,Other Thefts,1017
+Sabah,Other Thefts,1765
+Sarawak,Other Thefts,1421
+Selangor,Other Thefts,3536
+Terengganu,Other Thefts,545
+Kuala Lumpur,Other Thefts,1478

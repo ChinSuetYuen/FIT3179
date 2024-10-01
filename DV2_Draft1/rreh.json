@@ -1,0 +1,113 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {
+    "text": "Total Crime per 1000 Population",
+    "font": "Candara",
+    "fontSize": 25
+  },
+  "width": 1000,
+  "height": 450,
+  "params": [
+    {
+      "name": "Year_selection",
+      "value": 2018,
+      "bind": {
+        "input": "range",
+        "min": 2015,
+        "max": 2022,
+        "step": 1,
+        "name": "Year: 2015 "
+      }
+    }
+  ],
+  "projection": {
+    "type": "equalEarth"
+  },
+  "layer": [
+    {
+      "data": {
+        "url": "my.topojson",
+        "format": { "type": "topojson", "feature": "my" }
+      },
+      "transform": [
+        {
+          "lookup": "properties.name",
+          "from": {
+            "data": {
+              "url": "crime.csv"
+            },
+            "key": "State",
+            "fields": ["State", "Year", "TotalCrime", "CrimeRate"]
+          }
+        },
+        {
+          "filter": "datum.Year == Year_selection" 
+        }
+      ],
+      "mark": {
+        "type": "geoshape",
+        "stroke": "black",
+        "strokeWidth": 0.2
+      },
+      "encoding": {
+        "color": {
+          "condition": {
+            "test": "datum.properties.name === 'Kuala Lumpur'",
+            "value": "#6a0a0a"
+          },
+          "field": "CrimeRate",
+          "type": "quantitative",
+          "scale": {
+            "type": "threshold",
+            "domain": [1.25, 1.5, 1.75, 2, 2.5],
+            "range": [
+              "#fee5d9",
+              "#fcbba1",
+              "#fc9272",
+              "#fb6a4a",
+              "#de2d26",
+              "#a50f15"
+            ]
+          },
+          "legend": {
+            "title": "Crime Rate",
+            "padding": 20,
+            "offset": 20,
+            "orient": "right"
+          }
+        },
+        "tooltip": [
+          { "field": "State", "type": "nominal", "title": "State" },
+          { "field": "TotalCrime", "type": "quantitative", "title": "Total Crimes" },
+          { "field": "Year", "type": "quantitative", "title": "Year" },
+          {
+            "field": "CrimeRate",
+            "type": "quantitative",
+            "format": ".2f",
+            "title": "Crime Rate per 1000"
+          }
+        ]
+      }
+    }
+  ],
+  "config": {
+    "style": {
+      "guide-label": {
+        "font": "Candara",
+        "fontSize": 20
+      },
+      "guide-title": {
+        "font": "Candara",
+        "fontSize": 20
+      },
+      "text": {
+        "font": "Candara",
+        "fontSize": 20
+      }
+    },
+    "view": {
+      "fill": "azure"
+    },
+    "background": "snow"
+  }
+}

@@ -1,0 +1,108 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v5.json",
+  "width": 480,
+  "height": 350,
+  "padding": {"left": 20, "right": 40 ,"top": 20, "bottom": 0},
+  "autosize": "none",
+  "signals": [
+    {"name": "cx", "update": "width / 2"},
+    {"name": "cy", "update": "height / 2.5"}
+  ],
+  "data": [
+    {
+      "name": "table",
+      "values": [
+        {"TypeofCrime": "Robbery", "TotalCrime": 6154}, 
+        {"TypeofCrime": "Assault", "TotalCrime": 4648},
+        {"TypeofCrime": "Sexual Violence", "TotalCrime": 2066},
+        {"TypeofCrime": "Other Thefts", "TotalCrime": 18970},
+        {"TypeofCrime": "Murder", "TotalCrime": 300},      
+        {"TypeofCrime": "Vehicles Theft", "TotalCrime": 18700},    
+        {"TypeofCrime": "House break-ins", "TotalCrime": 13000}
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "size",
+      "domain": {"data": "table", "field": "TotalCrime"},
+      "range": [0, 10000]
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "domain": {"data": "table", "field": "TypeofCrime"},
+      "range": ["#cccccc", "#ef3b2c", "#fcbba1", "#252525", "#99000d", "#636363", "#969696"]  
+    }
+  ],
+  "marks": [
+    {
+      "name": "nodes",
+      "type": "symbol",
+      "from": {"data": "table"},
+      "encode": {
+        "enter": {
+          "fill": {"scale": "color", "field": "TypeofCrime"},
+          "xfocus": {"signal": "cx"},
+          "yfocus": {"signal": "cy"}
+        },
+        "update": {
+          "size": {"signal": "datum.TotalCrime", "scale": "size"},
+          "stroke": {"value": "lightblue"},
+          "strokeWidth": {"value": 1},
+          "tooltip": {"signal": "{'Crime Type': datum.TypeofCrime, 'Total Cases': datum.TotalCrime}"}
+        }
+      },
+      "transform": [
+        {
+          "type": "force",
+          "iterations": 100,
+          "static": false,
+          "forces": [
+            {
+              "force": "collide",
+              "iterations": 2,
+              "radius": {"expr": "sqrt(datum.size)/2 + 10"}
+            },
+            {"force": "center", "x": {"signal": "cx"}, "y": {"signal": "cy"}}
+          ]
+        }
+      ]
+    },
+    {
+      "type": "text",
+      "from": {"data": "nodes"},
+      "encode": {
+        "enter": {
+          "align": {"value": "center"},
+          "baseline": {"value": "bottom"},
+          "fontSize": {"value": 10},
+          "fontWeight": {"value": "bold"},
+          "fill": {"value": "black"},
+          "text": {"field": "datum.TypeofCrime"}
+        },
+        "update": {
+          "x": {"field": "x"}, 
+          "y": {"field": "y", "offset": "-sqrt(datum.size)/2 - 2"}
+        }
+      }
+    }
+  ],
+  "config": {
+    "style" :{
+      "guide-label": {
+        "font": "Candara",
+        "fontSize": 20
+      }, 
+      "guide-title": {
+        "font": "Candara",
+        "fontSize": 20
+      },
+      "text": {
+        "font": "Candara",
+        "fontSize": 20
+      }
+    },
+    "background": "#fffefe"
+  }
+}

@@ -27,9 +27,9 @@ body {
 
 
 .title {
-  width: 85%;
+  width: 90%;
   margin: 0 auto;
-  font-size: 57px;
+  font-size: 60px;
   font-family: 'StencilFont', serif;
   color: firebrick;
   text-align: center;
@@ -38,7 +38,8 @@ body {
 .paratext {
   width: 83%;
   margin: 0 auto;
-  padding-top: 5px;  
+  padding-top: 5px;
+  font-family: 'Candara', sans-serif;
 }
 
 .center {
@@ -47,6 +48,15 @@ body {
   padding-top: 10px;  
   text-align: center;
   font-weight: bold;
+  font-size: 25px;
+}
+
+.centerpara{
+  width: 83%;
+  margin: 0 auto;
+  padding-top: 5px;
+  font-family: 'Candara', sans-serif;
+  font-size: 20px;
 }
 
 .heading {
@@ -58,15 +68,27 @@ body {
 }
 
 .vg-tooltip {
-  position: absolute !important;
-  transform: translate(50px, 50px) !important; 
-  pointer-events: none;
+  position: absolute; 
+  pointer-events: none; 
+  background-color: snow; 
+  padding: 5px; 
+  border: 1px solid #ccc; 
+  border-radius: 4px;
+  z-index: 1000;
+  transform: translate(45px, 45px); 
   font-size: 15px !important;
-  background-color: snow !important;
+}
+
+.redtext{
+  color: red !important;
+}
+
+.greytext{
+  color: gray !important;
 }
 
 .page {
-  width: 1500px;
+  width: 1600px;
   background-color: snow;
   margin: auto;
   padding: 50px;

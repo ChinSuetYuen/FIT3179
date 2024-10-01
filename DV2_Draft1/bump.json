@@ -1,0 +1,137 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {
+    "text": "Rank of Crime Rate per 1000 Population by State",
+    "font": "Candara",
+    "fontSize": 25
+  },
+  "width": 750,
+  "height": 600,
+  "padding": {"left": 95, "right": 0 ,"top": 0, "bottom": 0},
+  "data": {
+    "url": "crime.csv"
+  },
+  "transform": [
+    {
+      "calculate": "datum.TotalCrime / datum.Population",
+      "as": "CrimeRate"
+    },
+    {
+      "window": [
+        {
+          "op": "rank",
+          "as": "Rank"
+        }
+      ],
+      "groupby": ["Year"],
+      "sort": [{"field": "CrimeRate", "order": "descending"}]
+    }
+  ],
+  "layer": [
+    {
+      "mark": "line",
+      "encoding": {
+        "x": {
+          "field": "Year",
+          "type": "ordinal",
+          "axis": {"labelFont": "Candara", "titleFont": "Candara", "title": "Year"}
+        },
+        "y": {
+          "field": "Rank",
+          "type": "quantitative",
+          "sort": "ascending",
+          "axis": {
+            "labelFont": "Candara",
+            "titleFont": "Candara",
+            "title": "Rank",
+            "grid": true
+          }
+        },
+        "color": {
+          "field": "State",
+          "type": "nominal",
+          "legend": {
+            "title": "State",
+            "titleFont": "Candara",
+            "labelFont": "Candara"
+          }
+        },
+        "tooltip": [
+          {"field": "State", "type": "nominal", "title": "State"},
+          {"field": "Year", "type": "ordinal", "title": "Year"},
+          {"field": "CrimeRate", "type": "quantitative", "format": ".2f", "title": "Crime Rate"},
+          {"field": "Rank", "type": "quantitative", "title": "Rank"}
+        ]
+      }
+    },
+    {
+      "mark": {
+        "type": "point",
+        "filled": true,
+        "size": 100
+      },
+      "encoding": {
+        "x": {
+          "field": "Year",
+          "type": "ordinal"
+        },
+        "y": {
+          "field": "Rank",
+          "type": "quantitative",
+          "sort": "descending"
+        },
+        "color": {
+          "field": "State",
+          "type": "nominal",
+          "scale": {
+            "domain": [
+              "Johor",
+              "Kedah",
+              "Kelantan",
+              "Melaka",
+              "Negeri Sembilan",
+              "Pahang",
+              "Perak",
+              "Perlis",
+              "Pulau Pinang",
+              "Sabah",
+              "Sarawak",
+              "Selangor",
+              "Terengganu",
+              "Kuala Lumpur"
+            ],
+            "range": [
+              "#ffe915",
+              "#ff9838",
+              "#ff0033",
+              "#b30000",
+              "#9ecae1",
+              "#6baed6",
+              "#3182bd",
+              "#08519c",
+              "#b2abd2",
+              "#8073ac",
+              "#542788",
+              "#f1b6da",
+              "#de77ae",
+              "#c51b7d"
+            ]
+          }
+        },
+        "tooltip": [
+          {"field": "State", "type": "nominal", "title": "State"},
+          {"field": "Year", "type": "ordinal", "title": "Year"},
+          {"field": "CrimeRate", "type": "quantitative", "format": ".2f", "title": "Crime Rate per 1000"},
+          {"field": "Rank", "type": "quantitative", "title": "Rank"}
+        ]
+      }
+    }
+  ],
+  "config": {
+    "style": {
+      "guide-label": {"font": "Candara", "fontSize": 15},
+      "guide-title": {"font": "Candara", "fontSize": 20}
+    },
+    "background": "snow"
+  }
+}

@@ -1,0 +1,66 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {
+    "text": "Crime Data by State (2022)",
+    "font": "Candara",
+    "fontSize": 25
+  },
+  "width": 750,
+  "height": 600,
+  "data": {
+    "url": "bubb.csv"
+  },
+  "mark": "circle",
+  "encoding": {
+    "x": {
+      "field": "Crime",
+      "type": "nominal",
+      "title": "Crime Type",
+      "scale": {
+        "domain": ["Sexual Violence", "Assault", "Murder", "Robbery", "House break-ins", "Vehicles Theft", "Other Thefts"]
+      }
+    },
+    "y": {
+      "field": "State",
+      "type": "nominal",
+      "title": "State"
+    },
+    "size": {
+      "field": "Count",
+      "type": "quantitative",
+      "title": "Count",
+      "scale": { "range": [100, 3000] }
+    },
+    "color": {
+      "field": "Crime",
+      "type": "nominal",
+      "legend": { "title": "Crime Type" },
+      "scale": {
+        "domain": ["Sexual Violence", "Assault", "Murder", "Robbery", "House break-ins", "Vehicles Theft", "Other Thefts"],
+        "range": ["#fcbba1", "#ef3b2c", "#99000d", "#cccccc", "#969696", "#636363", "#252525"]
+
+      }
+    },
+    "tooltip": [
+      { "field": "State", "type": "nominal", "title": "State" },
+      { "field": "Crime", "type": "nominal", "title": "Crime Type" },
+      { "field": "Count", "type": "quantitative", "title": "Total Count" }
+    ]
+  },
+  "config": {
+    "style" :{
+      "guide-label": {
+        "font": "Candara",
+        "fontSize": 15
+      }, 
+      "guide-title": {
+        "font": "Candara",
+        "fontSize": 20
+      }
+    },
+    "view" :{
+      "fill": "#fffefe"
+    },
+    "background": "snow"
+  }
+}
