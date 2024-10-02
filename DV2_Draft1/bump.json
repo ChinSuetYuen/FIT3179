@@ -13,10 +13,6 @@
   },
   "transform": [
     {
-      "calculate": "datum.TotalCrime / datum.Population",
-      "as": "CrimeRate"
-    },
-    {
       "window": [
         {
           "op": "rank",
