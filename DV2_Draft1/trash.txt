@@ -1,0 +1,34 @@
+    {
+      "mark": {
+        "type":"text", 
+        "align":"right",
+        "color": "snow",
+        "font": "Candara",
+        "fontSize": 15, 
+        "dy":-22 , 
+        "dx": 230,
+        "text":"Total"
+      },
+      "transform": [
+        { "filter": "datum.Year == 2022" }
+      ],
+      "encoding": {
+        "y": {
+          "field": "Rank",
+          "type": "quantitative",
+          "sort": "descending"
+        },
+        "color":{
+          "condition": {"param": "staterank", "value": "black"},
+          "value": "snow"
+        },
+        "text": {
+          "field": "State",  
+          "type": "nominal"
+        },
+        "opacity": {
+          "condition": {"param": "staterank", "value": 1},
+          "value": 0
+        }
+      }
+    }

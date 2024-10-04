@@ -1,0 +1,23 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "data": {
+      "url": "fullcrime.csv"
+    },
+    "mark": "line",
+    "encoding": {
+      "x": { "field": "State", "type": "nominal" },
+      "y": { "field": "Year", "type": "quantitative" },
+    "tooltip": [
+            { "field": "State", "type": "nominal", "title": "State" },
+            { "field": "TotalCrime", "type": "quantitative", "title": "Total Crimes" },
+            { "field": "Year", "type": "quantitative", "title": "Year" },
+            {
+              "field": "TotalCrime / Population",
+              "type": "quantitative",
+              "format": ".2f",
+              "title": "Crime Rate per 1000"
+            }
+          ]    
+    }
+  
+  }

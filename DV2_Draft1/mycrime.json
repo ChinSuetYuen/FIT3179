@@ -10,7 +10,7 @@
   "projection": { "type": "equalEarth" },
   "data": {
     "url": "my.topojson",
-    "format": { "type": "topojson", "feature": "my" }
+    "format": { "type": "topojson", "feature": "name" }
   },
   "transform": [
     {

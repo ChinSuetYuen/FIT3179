@@ -1,60 +1,75 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "title": {
-    "text": "Total Crime per 1000 Population",
-    "font": "Candara",
-    "fontSize": 25
+  "width": 800,
+  "height": 400,
+  "title": "Total Crime per 1000 Population",
+  "projection": { "type": "equalEarth" },
+
+  "data": {
+    "url": "https://raw.githubusercontent.com/ChinSuetYuen/FIT3179/refs/heads/main/DV2_Draft1/my.topojson",
+    "format": { "type": "topojson", "feature": "my" }
   },
-  "width": 1000,
-  "height": 450,
   "params": [
     {
-      "name": "Year_selection",
-      "value": 2018,
+      "name": "year_selection",
+      "value": 2020,
       "bind": {
         "input": "range",
-        "min": 2015,
+        "min": 2017,
         "max": 2022,
         "step": 1,
-        "name": "Year: 2015 "
+        "name": "Year:  "
       }
     }
   ],
-  "projection": {
-    "type": "equalEarth"
-  },
   "layer": [
     {
-      "data": {
-        "url": "my.topojson",
-        "format": { "type": "topojson", "feature": "my" }
-      },
       "transform": [
         {
           "lookup": "properties.name",
           "from": {
             "data": {
-              "url": "crime.csv"
+              "url": "https://raw.githubusercontent.com/ChinSuetYuen/FIT3179/refs/heads/main/DV2_Draft1/fullcrime.csv",
+              "format": { "type": "csv" }
             },
             "key": "State",
-            "fields": ["State", "Year", "TotalCrime", "CrimeRate"]
+            "fields": ["Year", "TotalCrime", "CrimeRate"]
           }
         },
-        {
-          "filter": "datum.Year == Year_selection" 
-        }
+        { "filter": { "param": "year_selection" } }
       ],
       "mark": {
         "type": "geoshape",
-        "stroke": "black",
-        "strokeWidth": 0.2
+        "stroke": "#fff",
+        "strokeWidth": 0.5,
+        "cursor": "pointer"
       },
+      "params": [
+        {
+          "name": "select_area",
+          "select": { "type": "point", "fields": ["CrimeRate"] }
+        }
+      ],
       "encoding": {
-        "color": {
+        "fillOpacity": {
+          "condition": { "param": "select_area", "value": 1 },
+          "value": 0.2
+        },
+        "stroke": {
           "condition": {
-            "test": "datum.properties.name === 'Kuala Lumpur'",
-            "value": "#6a0a0a"
+            "param": "select_area",
+            "value": "#3f0000"
           },
+          "value": "transparent"
+        },
+        "strokeWidth": {
+          "condition": {
+            "param": "select_area",
+            "value": 1
+          },
+          "value": 0
+        },
+        "color": {
           "field": "CrimeRate",
           "type": "quantitative",
           "scale": {
@@ -77,16 +92,30 @@
           }
         },
         "tooltip": [
-          { "field": "State", "type": "nominal", "title": "State" },
-          { "field": "TotalCrime", "type": "quantitative", "title": "Total Crimes" },
-          { "field": "Year", "type": "quantitative", "title": "Year" },
+          { "field": "properties.name", "type": "nominal", "title": "State" },
+          {
+            "field": "TotalCrime",
+            "type": "quantitative",
+            "title": "Total Crimes"
+          },
           {
             "field": "CrimeRate",
             "type": "quantitative",
             "format": ".2f",
-            "title": "Crime Rate per 1000"
+            "title": "Crime Rate per 10,000"
           }
         ]
+      }
+    },
+    {
+      "mark": {
+        "type": "text",
+        "color": "black",
+        "font": "Candara",
+        "fontSize": 20,
+        "dx": -20,
+        "dy": -130,
+        "text": " "
       }
     }
   ],
@@ -107,6 +136,10 @@
     },
     "view": {
       "fill": "azure"
+    },
+    "title": {
+      "font": "Candara",
+      "fontSize": 25
     },
     "background": "snow"
   }

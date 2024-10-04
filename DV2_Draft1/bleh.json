@@ -1,0 +1,110 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": "Median house price per suburb (2010-2020)",
+  "width": 1000,
+  "height": 500,
+  "params": [
+    {
+      "name": "Year_selection",
+      "value": 2018,
+      "bind": {
+        "input": "range",
+        "min": 2015,
+        "max": 2022,
+        "step": 1,
+        "name": "Year:  "
+      }
+    }
+  ],
+  "projection": {
+    "type": "equirectangular"
+  },
+  "layer": [
+    {
+      "data": {
+        "url": "my.topojson",
+        "format": { "type": "topojson", "feature": "my" }
+      },
+      "transform": [
+        {
+          "calculate": "'Data is not available in ' + datum.properties.name",
+          "as": "note"
+        }
+      ],
+      "mark": {
+        "type": "geoshape",
+        "fill": "#ddd",
+        "stroke": "white",
+        "strokeWidth": 1
+      },
+      "encoding": { "tooltip": { "field": "note" } }
+    },
+    {
+      "data": {
+        "url": "crime.csv"
+      },
+      "transform": [
+        {
+          "lookup": "State",
+          "from": {
+            "data": {
+              "url": "my.topojson",
+              "format": {
+                "type": "topojson",
+                "feature": "my"
+              }
+            },
+            "key": "properties.name"
+          },
+          "as": "geo"
+        },
+        { "filter": "datum.Year == Year_selection" }
+      ],
+      "mark": { "type": "geoshape", "stroke": "#fff", "strokeWidth": 0.5 },
+      "encoding": {
+        "color": {
+          "condition": {
+            "test": "datum.properties.name === 'Kuala Lumpur'",
+            "value": "#6a0a0a"
+          },
+          "field": "CrimeRate",
+          "type": "quantitative",
+          "scale": {
+            "type": "threshold",
+            "domain": [1.25, 1.5, 1.75, 2, 2.5],
+            "range": [
+              "#fee5d9",
+              "#fcbba1",
+              "#fc9272",
+              "#fb6a4a",
+              "#de2d26",
+              "#a50f15"
+            ]
+          },
+          "legend": {
+            "title": "Crime Rate",
+            "padding": 20,
+            "offset": 20,
+            "orient": "right"
+          }
+        },
+        "tooltip": [
+          { "field": "State", "type": "nominal", "title": "State" },
+          {
+            "field": "TotalCrime",
+            "type": "quantitative",
+            "title": "Total Crimes"
+          },
+          { "field": "Year", "type": "quantitative", "title": "Year" },
+          {
+            "field": "CrimeRate",
+            "type": "quantitative",
+            "format": ".2f",
+            "title": "Crime Rate per 1000"
+          }
+        ]
+      }
+    }
+  ],
+  "config": {}
+}
