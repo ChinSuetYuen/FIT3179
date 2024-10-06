@@ -1,15 +1,15 @@
-﻿State,CrimeRate
-Johor,1.11
-Kedah,2.15
-Kelantan,1.21
-Melaka,1.29
-Negeri Sembilan,1.48
-Pahang,1.17
-Perak,1.29
-Perlis,1.39
-Pulau Pinang,1.99
-Sabah,1.2
-Sarawak,1.57
-Selangor,1.85
-Terengganu,1.24
-Kuala Lumpur,2.51
+﻿State,CrimeRate,TotalCrime
+Johor,1.11,4462
+Kedah,2.15,4651
+Kelantan,1.21,2206
+Melaka,1.29,1297
+Negeri Sembilan,1.48,1784
+Pahang,1.17,1884
+Perak,1.29,3260
+Perlis,1.39,402
+Pulau Pinang,1.99,3463
+Sabah,1.2,4101
+Sarawak,1.57,3887
+Selangor,1.85,13025
+Terengganu,1.24,1477
+Kuala Lumpur,2.51,4914
