@@ -1,110 +1,317 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "title": "Median house price per suburb (2010-2020)",
-  "width": 1000,
-  "height": 500,
-  "params": [
-    {
-      "name": "Year_selection",
-      "value": 2018,
-      "bind": {
-        "input": "range",
-        "min": 2015,
-        "max": 2022,
-        "step": 1,
-        "name": "Year:  "
-      }
-    }
-  ],
-  "projection": {
-    "type": "equirectangular"
+  "title": {
+    "text": "Remember to Take Care of Your Personal Hygiene For Clean Gateaways: Crime Rate in Malaysia through the Years",
+    "font": "Candara",
+    "fontSize": 25,
+    "anchor": "middle",
+    "align": "center"
   },
-  "layer": [
+  "vconcat": [
     {
+      "width": 800,
+      "height": 400,
+      "title": "Total Crime per 1000 Population",
+      "projection": { "type": "equalEarth" },
       "data": {
-        "url": "my.topojson",
+        "url": "https://raw.githubusercontent.com/ChinSuetYuen/FIT3179/refs/heads/main/DV2_Draft1/my.topojson",
         "format": { "type": "topojson", "feature": "my" }
       },
-      "transform": [
+      "layer": [
         {
-          "calculate": "'Data is not available in ' + datum.properties.name",
-          "as": "note"
-        }
-      ],
-      "mark": {
-        "type": "geoshape",
-        "fill": "#ddd",
-        "stroke": "white",
-        "strokeWidth": 1
-      },
-      "encoding": { "tooltip": { "field": "note" } }
-    },
-    {
-      "data": {
-        "url": "crime.csv"
-      },
-      "transform": [
-        {
-          "lookup": "State",
-          "from": {
-            "data": {
-              "url": "my.topojson",
-              "format": {
-                "type": "topojson",
-                "feature": "my"
+          "transform": [
+            { "filter": "datum.State != 'Malaysia'" },
+            {
+              "lookup": "properties.name",
+              "from": {
+                "data": {
+                  "url": "https://raw.githubusercontent.com/ChinSuetYuen/FIT3179/refs/heads/main/DV2_Draft1/fullcrime.csv",
+                  "format": { "type": "csv" }
+                },
+                "key": "State",
+                "fields": ["State", "Year", "CrimeRate", "TotalCrime"]
+              }
+            }
+          ],
+          "mark": {
+            "type": "geoshape",
+            "stroke": "#fff",
+            "strokeWidth": 0.5,
+            "cursor": "pointer"
+          },
+          "params": [
+            {
+              "name": "select_area",
+              "select": { "type": "point", "fields": ["CrimeRate"] }
+            }
+          ],
+          "encoding": {
+            "fillOpacity": {
+              "condition": { "param": "select_area", "value": 1 },
+              "value": 0.3
+            },
+            "stroke": {
+              "condition": {
+                "param": "select_area",
+                "value": "#3f0000"
+              },
+              "value": "transparent"
+            },
+            "strokeWidth": {
+              "condition": {
+                "param": "select_area",
+                "value": 1
+              },
+              "value": 0
+            },
+            "color": {
+              "field": "CrimeRate",
+              "type": "quantitative",
+              "scale": {
+                "type": "threshold",
+                "domain": [1.25, 1.5, 1.75, 2, 2.5],
+                "range": [
+                  "#fee5d9",
+                  "#fcbba1",
+                  "#fc9272",
+                  "#fb6a4a",
+                  "#de2d26",
+                  "#a50f15"
+                ]
+              },
+              "legend": {
+                "title": "Population Density (per km²)",
+                "orient": "right",
+                "offset": 50,
+                "labelOffset": 5
               }
             },
-            "key": "properties.name"
-          },
-          "as": "geo"
-        },
-        { "filter": "datum.Year == Year_selection" }
-      ],
-      "mark": { "type": "geoshape", "stroke": "#fff", "strokeWidth": 0.5 },
-      "encoding": {
-        "color": {
-          "condition": {
-            "test": "datum.properties.name === 'Kuala Lumpur'",
-            "value": "#6a0a0a"
-          },
-          "field": "CrimeRate",
-          "type": "quantitative",
-          "scale": {
-            "type": "threshold",
-            "domain": [1.25, 1.5, 1.75, 2, 2.5],
-            "range": [
-              "#fee5d9",
-              "#fcbba1",
-              "#fc9272",
-              "#fb6a4a",
-              "#de2d26",
-              "#a50f15"
+            "tooltip": [
+              { "field": "properties.name", "title": "State" },
+              { "field": "Year", "type": "quantitative", "title": "Year" },
+              {
+                "field": "TotalCrime",
+                "type": "quantitative",
+                "title": "Total Crimes"
+              },
+              {
+                "field": "CrimeRate",
+                "type": "quantitative",
+                "format": ".2f",
+                "title": "Crime Rate per 10,000"
+              }
             ]
-          },
-          "legend": {
-            "title": "Crime Rate",
-            "padding": 20,
-            "offset": 20,
-            "orient": "right"
           }
         },
-        "tooltip": [
-          { "field": "State", "type": "nominal", "title": "State" },
-          {
-            "field": "TotalCrime",
-            "type": "quantitative",
-            "title": "Total Crimes"
+
+        {
+          "data": {
+            "url": "https://raw.githubusercontent.com/ChinSuetYuen/FIT3179/refs/heads/main/DV2_Draft1/fullcrime.csv",
+            "format": { "type": "csv" }
           },
-          { "field": "Year", "type": "quantitative", "title": "Year" },
-          {
-            "field": "CrimeRate",
-            "type": "quantitative",
-            "format": ".2f",
-            "title": "Crime Rate per 1000"
-          }
-        ]
-      }
+          "mark": { "type": "geoshape", "stroke": "#fff", "strokeWidth": 0.5 },
+          "transform": [
+            {
+              "lookup": "State",
+              "from": {
+                "data": {
+                  "url": "https://raw.githubusercontent.com/mptwaktusolat/jakim.geojson/refs/heads/master/malaysia.state.geojson",
+                  "format": { "property": "features" }
+                },
+                "key": "properties.name"
+              },
+              "as": "geo"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "hconcat": [
+        {
+          "title": " ",
+          "width": 500,
+          "height": 200,
+          "data": {
+            "url": "https://raw.githubusercontent.com/ChinSuetYuen/FIT3179/refs/heads/main/DV2_Draft1/fullcrime.csv"
+          },
+          "transform": [{ "filter": "datum.State == 'Malaysia'" }],
+          "layer": [
+            {
+              "mark": "line",
+              "params": [
+                {
+                  "name": "year_selection",
+                  "select": { "type": "point", "fields": ["Year"] }
+                }
+              ],
+              "encoding": {
+                "y": {
+                  "field": "CrimeRate",
+                  "type": "quantitative",
+                  "title": "Malaysia's Crime Rate"
+                },
+                "x": {
+                  "field": "Year",
+                  "type": "ordinal",
+                  "axis": {
+                    "labelFont": "Candara",
+                    "titleFont": "Candara",
+                    "title": "Year"
+                  }
+                },
+                "color": {
+                  "value": "firebrick"
+                },
+                "tooltip": [
+                  { "field": "State", "type": "nominal", "title": "State" },
+                  { "field": "Year", "type": "quantitative", "title": "Year" }
+                ]
+              }
+            },
+            {
+              "mark": { "type": "point", "filled": true, "size": 100 },
+              "encoding": {
+                "y": { "field": "CrimeRate", "type": "quantitative" },
+                "x": {
+                  "field": "Year",
+                  "type": "ordinal",
+                  "axis": {
+                    "labelFont": "Candara",
+                    "titleFont": "Candara",
+                    "title": "Year"
+                  }
+                },
+                "color": {
+                  "value": "firebrick"
+                },
+                "tooltip": [
+                  {
+                    "field": "TotalCrime",
+                    "type": "quantitative",
+                    "title": "Total Crime:"
+                  },
+                  { "field": "Year", "type": "quantitative", "title": "Year:" },
+                  {
+                    "field": "CrimeRate",
+                    "type": "quantitative",
+                    "format": ".2f",
+                    "title": "Crime Rate:"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "title": " ",
+          "width": 500,
+          "height": 200,
+          "data": {
+            "url": "https://raw.githubusercontent.com/ChinSuetYuen/FIT3179/refs/heads/main/DV2_Draft1/fullcrime.csv"
+          },
+          "transform": [
+            { "filter": { "param": "year_selection" } },
+            { "filter": "datum.State != 'Malaysia'" }
+          ],
+          "layer": [
+            {
+              "mark": "bar",
+              "encoding": {
+                "y": {
+                  "aggregate": "average",
+                  "field": "CrimeRate",
+                  "type": "quantitative",
+                  "title": "Malaysia's Crime Rate"
+                },
+                "x": {
+                  "field": "State",
+                  "type": "ordinal",
+                  "sort": "-y",
+                  "axis": {
+                    "labelFont": "Candara",
+                    "titleFont": "Candara",
+                    "title": "Year"
+                  }
+                },
+                "color": {
+                  "field": "State",
+                  "type": "nominal",
+                  "scale": {
+                    "domain": [
+                      "Johor",
+                      "Kedah",
+                      "Kelantan",
+                      "Melaka",
+                      "Negeri Sembilan",
+                      "Pahang",
+                      "Perak",
+                      "Perlis",
+                      "Pulau Pinang",
+                      "Sabah",
+                      "Sarawak",
+                      "Selangor",
+                      "Terengganu",
+                      "Kuala Lumpur"
+                    ],
+                    "range": [
+                      "#adad00",
+                      "#ff9838",
+                      "#ff0033",
+                      "#b30000",
+                      "#9ecae1",
+                      "#6baed6",
+                      "#3182bd",
+                      "#08519c",
+                      "#b2abd2",
+                      "#8073ac",
+                      "#542788",
+                      "#f1b6da",
+                      "#de77ae",
+                      "#c51b7d"
+                    ]
+                  }
+                },
+                "tooltip": [
+                  { "field": "State", "type": "nominal", "title": "State" },
+                  { "field": "Year", "type": "quantitative", "title": "Year" },
+                  {
+                    "field": "CrimeRate",
+                    "type": "quantitative",
+                    "format": ".2f",
+                    "title": "Crime Rate",
+                    "aggregate": "average"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      ]
     }
   ],
-  "config": {}
+  "config": {
+    "style": {
+      "guide-label": {
+        "font": "Candara",
+        "fontSize": 20
+      },
+      "guide-title": {
+        "font": "Candara",
+        "fontSize": 20
+      },
+      "text": {
+        "font": "Candara",
+        "fontSize": 20
+      }
+    },
+    "view": {
+      "fill": "#faffff"
+    },
+    "title": {
+      "font": "Candara",
+      "fontSize": 25
+    },
+    "background": "snow"
+  }
 }

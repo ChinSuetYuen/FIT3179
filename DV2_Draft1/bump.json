@@ -187,6 +187,201 @@
       "guide-label": {"font": "Candara", "fontSize": 15},
       "guide-title": {"font": "Candara", "fontSize": 20}
     },
+    "view": {
+      "fill": "#faffff"
+    },
     "background": "snow"
   }
 }
+
+PART 2
+        
+"title": {
+  "text": "Rank of Crime Rate per 1000 Population by State",
+  "font": "Candara",
+  "fontSize": 25
+},
+"width": 800,
+"height": 600,
+"data": {
+  "url": "https://raw.githubusercontent.com/ChinSuetYuen/FIT3179/refs/heads/main/DV2_Draft1/crime.csv"
+},
+"transform": [
+  {
+    "window": [
+      {
+        "op": "rank",
+        "as": "Rank"
+      }
+    ],
+    "groupby": ["Year"],
+    "sort": [{ "field": "CrimeRate", "order": "descending" }]
+  }
+],
+"layer": [
+  {
+    "mark": "line",
+    "params": [
+      {
+        "name": "staterank",
+        "select": { "type": "point", "fields": ["State"] }
+      }
+    ],
+    "encoding": {
+      "x": {
+        "field": "Year",
+        "type": "ordinal",
+        "axis": {
+          "labelFont": "Candara",
+          "titleFont": "Candara",
+          "title": "Year"
+        }
+      },
+      "y": {
+        "field": "Rank",
+        "type": "quantitative",
+        "sort": "ascending",
+        "axis": {
+          "labelFont": "Candara",
+          "titleFont": "Candara",
+          "title": "Rank",
+          "grid": true,
+          "tickMinStep": 1,
+          "labelExpr": "datum.value > 0 ? datum.label : ''"
+        }
+      },
+      "color": {
+        "field": "State",
+        "type": "nominal",
+        "legend": null
+      },
+      "strokeWidth": {
+        "condition": [
+          {
+            "param": "staterank",
+            "empty": false,
+            "value": 3
+          }
+        ],
+        "value": 1
+      },
+      "opacity": {
+        "condition": { "param": "staterank", "value": 1 },
+        "value": 0.2
+      },
+      "tooltip": [
+        { "field": "State", "type": "nominal", "title": "State" },
+        { "field": "Year", "type": "ordinal", "title": "Year" },
+        {
+          "field": "CrimeRate",
+          "type": "quantitative",
+          "format": ".2f",
+          "title": "Crime Rate"
+        },
+        { "field": "Rank", "type": "quantitative", "title": "Rank" }
+      ]
+    }
+  },
+  {
+    "mark": {
+      "type": "point",
+      "filled": true,
+      "size": 100
+    },
+    "encoding": {
+      "x": {
+        "field": "Year",
+        "type": "ordinal"
+      },
+      "y": {
+        "field": "Rank",
+        "type": "quantitative",
+        "sort": "descending"
+      },
+      "color": {
+        "field": "State",
+        "type": "nominal",
+        "scale": {
+          "domain": [
+            "Johor",
+            "Kedah",
+            "Kelantan",
+            "Melaka",
+            "Negeri Sembilan",
+            "Pahang",
+            "Perak",
+            "Perlis",
+            "Pulau Pinang",
+            "Sabah",
+            "Sarawak",
+            "Selangor",
+            "Terengganu",
+            "Kuala Lumpur"
+          ],
+          "range": [
+            "#adad00",
+            "#ff9838",
+            "#ff0033",
+            "#b30000",
+            "#9ecae1",
+            "#6baed6",
+            "#3182bd",
+            "#08519c",
+            "#b2abd2",
+            "#8073ac",
+            "#542788",
+            "#f1b6da",
+            "#de77ae",
+            "#c51b7d"
+          ]
+        }
+      },
+      "opacity": {
+        "condition": { "param": "staterank", "value": 1 },
+        "value": 0.2
+      },
+      "tooltip": [
+        { "field": "State", "type": "nominal", "title": "State" },
+        { "field": "Year", "type": "ordinal", "title": "Year" },
+        {
+          "field": "CrimeRate",
+          "type": "quantitative",
+          "format": ".2f",
+          "title": "Crime Rate per 1000"
+        },
+        { "field": "Rank", "type": "quantitative", "title": "Rank" }
+      ]
+    }
+  },
+  {
+    "mark": {
+      "type": "text",
+      "align": "left",
+      "color": "snow",
+      "font": "Candara",
+      "fontSize": 15,
+      "dy": -22,
+      "dx": -240
+    },
+    "transform": [{ "filter": "datum.Year == 2015" }],
+    "encoding": {
+      "y": {
+        "field": "Rank",
+        "type": "quantitative",
+        "sort": "descending"
+      },
+      "color": {
+        "condition": { "param": "staterank", "value": "black" },
+        "value": "snow"
+      },
+      "text": {
+        "field": "State",
+        "type": "nominal"
+      },
+      "opacity": {
+        "condition": { "param": "staterank", "value": 1 },
+        "value": 0
+      }
+    }
+  }
+]

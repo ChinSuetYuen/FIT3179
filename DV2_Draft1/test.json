@@ -1,97 +1,329 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "width": 800,
-  "height": 400,
-  "title": "Population by State in Malaysia",
-  "projection": { "type": "equalEarth" },
-  "data": {
-    "url": "https://raw.githubusercontent.com/ChinSuetYuen/FIT3179/refs/heads/main/DV2_Draft1/my.topojson",
-    "format": {  "type": "topojson", "feature": "my" }
+  "title": {
+    "text": "Remember to Take Care of Your Personal Hygiene For Clean Gateaways: Crime Rate in Malaysia through the Years",
+    "font": "Candara",
+    "fontSize": 25,
+    "anchor": "middle",
+    "align": "center"
   },
-  "layer": [
+  "vconcat": [
     {
+      "width": 800,
+      "height": 400,
+      "title": "Total Crime per 1000 Population",
+      "projection": { "type": "equalEarth" },
+      "data": {
+        "url": "https://raw.githubusercontent.com/ChinSuetYuen/FIT3179/refs/heads/main/DV2_Draft1/my.topojson",
+        "format": { "type": "topojson", "feature": "my" }
+      },
+      "layer": [
+        {
+          "transform": [
+            { "filter": "datum.State != 'Malaysia'" },
+            {
+              "lookup": "properties.name",
+              "from": {
+                "data": {
+                  "url": "https://raw.githubusercontent.com/ChinSuetYuen/FIT3179/refs/heads/main/DV2_Draft1/fullcrime.csv",
+                  "format": { "type": "csv" }
+                },
+                "key": "State",
+                "fields": ["State", "Year", "CrimeRate", "TotalCrime"]
+              }
+            }
+          ],
+          "mark": {
+            "type": "geoshape",
+            "stroke": "#fff",
+            "strokeWidth": 0.5,
+            "cursor": "pointer"
+          },
+          "params": [
+            {
+              "name": "staterank",
+              "select": { "type": "point", "fields": ["State"] }
+            }
+          ],
+          "encoding": {
+            "fillOpacity": {
+              "condition": { "param": "staterank", "value": 1 },
+              "value": 0.3
+            },
+            "stroke": {
+              "condition": {
+                "param": "staterank",
+                "value": "#3f0000"
+              },
+              "value": "transparent"
+            },
+            "strokeWidth": {
+              "condition": {
+                "param": "staterank",
+                "value": 1
+              },
+              "value": 0
+            },
+            "color": {
+              "field": "CrimeRate",
+              "type": "quantitative",
+              "scale": {
+                "type": "threshold",
+                "domain": [1.25, 1.5, 1.75, 2, 2.5],
+                "range": [
+                  "#fee5d9",
+                  "#fcbba1",
+                  "#fc9272",
+                  "#fb6a4a",
+                  "#de2d26",
+                  "#a50f15"
+                ]
+              },
+              "legend": {
+                "title": "Population Density (per km²)",
+                "orient": "right",
+                "offset": 50,
+                "labelOffset": 5
+              }
+            },
+            "tooltip": [
+              { "field": "properties.name", "title": "State" },
+              { "field": "Year", "type": "quantitative", "title": "Year" },
+              {
+                "field": "TotalCrime",
+                "type": "quantitative",
+                "title": "Total Crimes"
+              },
+              {
+                "field": "CrimeRate",
+                "type": "quantitative",
+                "format": ".2f",
+                "title": "Crime Rate per 10,000"
+              }
+            ]
+          }
+        },
+
+        {
+          "data": {
+            "url": "https://raw.githubusercontent.com/ChinSuetYuen/FIT3179/refs/heads/main/DV2_Draft1/fullcrime.csv",
+            "format": { "type": "csv" }
+          },
+          "mark": { "type": "geoshape", "stroke": "#fff", "strokeWidth": 0.5 },
+          "transform": [
+            {
+              "lookup": "State",
+              "from": {
+                "data": {
+                  "url": "https://raw.githubusercontent.com/ChinSuetYuen/FIT3179/refs/heads/main/DV2_Draft1/my.topojson",
+                  "format": { "type": "topojson", "feature": "my" }
+                },
+                "key": "properties.name"
+              },
+              "as": "geo"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": {
+        "text": "Rank of Crime Rate per 1000 Population by State",
+        "font": "Candara",
+        "fontSize": 25
+      },
+      "width": 800,
+      "height": 600,
+      "data": {
+        "url": "https://raw.githubusercontent.com/ChinSuetYuen/FIT3179/refs/heads/main/DV2_Draft1/crime.csv"
+      },
       "transform": [
         {
-          "lookup": "properties.name",
-          "from": {
-            "data": {
-              "url": "https://raw.githubusercontent.com/ChinSuetYuen/FIT3179/refs/heads/main/DV2_Draft1/fullcrime.csv",
-              "format": { "type": "csv" }
-            },
-            "key": "State",
-            "fields": ["Year", "TotalCrime", "CrimeRate"]
-          }
+          "window": [
+            {
+              "op": "rank",
+              "as": "Rank"
+            }
+          ],
+          "groupby": ["Year"],
+          "sort": [{ "field": "CrimeRate", "order": "descending" }]
         }
       ],
-      "mark": {
-        "type": "geoshape",
-        "stroke": "#fff",
-        "strokeWidth": 0.5,
-        "cursor": "pointer"
-      },
-      "params": [
+      "layer": [
         {
-          "name": "select_area",
-          "select": { "type": "point", "fields": ["CrimeRate"] }
+          "mark": "line",
+          "params": [
+            {
+              "name": "staterank",
+              "select": { "type": "point", "fields": ["State"] }
+            }
+          ],
+          "encoding": {
+            "x": {
+              "field": "Year",
+              "type": "ordinal",
+              "axis": {
+                "labelFont": "Candara",
+                "titleFont": "Candara",
+                "title": "Year"
+              }
+            },
+            "y": {
+              "field": "Rank",
+              "type": "quantitative",
+              "sort": "ascending",
+              "axis": {
+                "labelFont": "Candara",
+                "titleFont": "Candara",
+                "title": "Rank",
+                "grid": true,
+                "tickMinStep": 1,
+                "labelExpr": "datum.value > 0 ? datum.label : ''"
+              }
+            },
+            "color": {
+              "field": "State",
+              "type": "nominal",
+              "legend": null
+            },
+            "strokeWidth": {
+              "condition": [
+                {
+                  "param": "staterank",
+                  "empty": false,
+                  "value": 3
+                }
+              ],
+              "value": 1
+            },
+            "opacity": {
+              "condition": { "param": "staterank", "value": 1 },
+              "value": 0.2
+            },
+            "tooltip": [
+              { "field": "State", "type": "nominal", "title": "State" },
+              { "field": "Year", "type": "ordinal", "title": "Year" },
+              {
+                "field": "CrimeRate",
+                "type": "quantitative",
+                "format": ".2f",
+                "title": "Crime Rate"
+              },
+              { "field": "Rank", "type": "quantitative", "title": "Rank" }
+            ]
+          }
+        },
+        {
+          "mark": {
+            "type": "point",
+            "filled": true,
+            "size": 100
+          },
+          "encoding": {
+            "x": {
+              "field": "Year",
+              "type": "ordinal"
+            },
+            "y": {
+              "field": "Rank",
+              "type": "quantitative",
+              "sort": "descending"
+            },
+            "color": {
+              "field": "State",
+              "type": "nominal",
+              "scale": {
+                "domain": [
+                  "Johor",
+                  "Kedah",
+                  "Kelantan",
+                  "Melaka",
+                  "Negeri Sembilan",
+                  "Pahang",
+                  "Perak",
+                  "Perlis",
+                  "Pulau Pinang",
+                  "Sabah",
+                  "Sarawak",
+                  "Selangor",
+                  "Terengganu",
+                  "Kuala Lumpur"
+                ],
+                "range": [
+                  "#adad00",
+                  "#ff9838",
+                  "#ff0033",
+                  "#b30000",
+                  "#9ecae1",
+                  "#6baed6",
+                  "#3182bd",
+                  "#08519c",
+                  "#b2abd2",
+                  "#8073ac",
+                  "#542788",
+                  "#f1b6da",
+                  "#de77ae",
+                  "#c51b7d"
+                ]
+              }
+            },
+            "opacity": {
+              "condition": { "param": "staterank", "value": 1 },
+              "value": 0.2
+            },
+            "tooltip": [
+              { "field": "State", "type": "nominal", "title": "State" },
+              { "field": "Year", "type": "ordinal", "title": "Year" },
+              {
+                "field": "CrimeRate",
+                "type": "quantitative",
+                "format": ".2f",
+                "title": "Crime Rate per 1000"
+              },
+              { "field": "Rank", "type": "quantitative", "title": "Rank" }
+            ]
+          }
+        },
+        {
+          "mark": {
+            "type": "text",
+            "align": "left",
+            "color": "snow",
+            "font": "Candara",
+            "fontSize": 15,
+            "dy": -22,
+            "dx": -240
+          },
+          "transform": [{ "filter": "datum.Year == 2015" }],
+          "encoding": {
+            "y": {
+              "field": "Rank",
+              "type": "quantitative",
+              "sort": "descending"
+            },
+            "color": {
+              "condition": { "param": "staterank", "value": "black" },
+              "value": "snow"
+            },
+            "text": {
+              "field": "State",
+              "type": "nominal"
+            },
+            "opacity": {
+              "condition": { "param": "staterank", "value": 1 },
+              "value": 0
+            }
+          }
         }
-      ],
-      "encoding": {
-        "fillOpacity": {
-          "condition": { "param": "select_area", "value": 1 },
-          "value": 0.2
-        },
-        "stroke": {
-          "condition": {
-            "param": "select_area",
-            "value": "#3f0000" 
-          },
-          "value": "transparent" 
-        },
-        "strokeWidth": {
-          "condition": {
-            "param": "select_area",
-            "value": 1 
-          },
-          "value": 0
-        },
-        "color": {
-          "field": "CrimeRate",
-          "type": "quantitative",
-          "scale": {
-            "type": "threshold",
-            "domain": [1.25, 1.5, 1.75, 2, 2.5],
-            "range": ["#fee5d9", "#fcbba1","#fc9272","#fb6a4a","#de2d26","#a50f15"]
-          },
-          "legend": {
-            "title": "Crime Rate",
-            "padding": 20,
-            "offset": 20,
-            "orient": "right"
-          }
-        },
-        "tooltip": [
-          { "field": "properties.name", "type": "nominal", "title": "State" },
-          {
-            "field": "TotalCrime",
-            "type": "quantitative",
-            "title": "Total Crimes"
-          },
-          {
-            "field": "CrimeRate",
-            "type": "quantitative",
-            "format": ".2f",
-            "title": "Crime Rate per 10,000"
-          }
-        ]
-      }
+      ]
     }
   ],
   "config": {
-    "style" :{
+    "style": {
       "guide-label": {
         "font": "Candara",
         "fontSize": 20
-      }, 
+      },
       "guide-title": {
         "font": "Candara",
         "fontSize": 20
@@ -101,164 +333,13 @@
         "fontSize": 20
       }
     },
-    "view" :{
-      "fill": "azure"
+    "view": {
+      "fill": "#faffff"
     },
-    "background": "snow" 
+    "title": {
+      "font": "Candara",
+      "fontSize": 25
+    },
+    "background": "snow"
   }
-}
-
-
-
-// RAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-
-{
-  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-
-  "vconcat": [
-    {
-    "width": 800,
-    "height": 400,
-    "title": "Total Crime per 1000 Population",
-    "projection": { "type": "equalEarth" },      
-    "data": {
-      "url": "https://raw.githubusercontent.com/ChinSuetYuen/FIT3179/refs/heads/main/DV2_Draft1/my.topojson",
-      "format": { "type": "topojson", "feature": "my" }
-    },
-    "params": [
-      {
-        "name": "year_selection",
-        "value": 2020,
-        "bind": {
-          "input": "range",
-          "min": 2017,
-          "max": 2022,
-          "step": 1,
-          "name": "Year:  "
-        }
-      }
-    ],
-    "layer": [
-      {
-        "transform": [
-          {
-            "lookup": "properties.name",
-            "from": {
-              "data": {
-                "url": "https://raw.githubusercontent.com/ChinSuetYuen/FIT3179/refs/heads/main/DV2_Draft1/fullcrime.csv",
-                "format": { "type": "csv" }
-              },
-              "key": "State",
-              "fields": ["Year", "TotalCrime", "CrimeRate"]
-            }
-          },
-          { "filter": { "param": "year_selection" } }
-        ],
-        "mark": {
-          "type": "geoshape",
-          "stroke": "#fff",
-          "strokeWidth": 0.5,
-          "cursor": "pointer"
-        },
-        "params": [
-          {
-            "name": "select_area",
-            "select": { "type": "point", "fields": ["CrimeRate"] }
-          }
-        ],
-        "encoding": {
-          "fillOpacity": {
-            "condition": { "param": "select_area", "value": 1 },
-            "value": 0.2
-          },
-          "stroke": {
-            "condition": {
-              "param": "select_area",
-              "value": "#3f0000"
-            },
-            "value": "transparent"
-          },
-          "strokeWidth": {
-            "condition": {
-              "param": "select_area",
-              "value": 1
-            },
-            "value": 0
-          },
-          "color": {
-            "field": "CrimeRate",
-            "type": "quantitative",
-            "scale": {
-              "type": "threshold",
-              "domain": [1.25, 1.5, 1.75, 2, 2.5],
-              "range": [
-                "#fee5d9",
-                "#fcbba1",
-                "#fc9272",
-                "#fb6a4a",
-                "#de2d26",
-                "#a50f15"
-              ]
-            },
-            "legend": {
-              "title": "Crime Rate",
-              "padding": 20,
-              "offset": 20,
-              "orient": "right"
-            }
-          },
-          "tooltip": [
-            { "field": "properties.name", "type": "nominal", "title": "State" },
-            {
-              "field": "TotalCrime",
-              "type": "quantitative",
-              "title": "Total Crimes"
-            },
-            {
-              "field": "CrimeRate",
-              "type": "quantitative",
-              "format": ".2f",
-              "title": "Crime Rate per 10,000"
-            }
-          ]
-        }
-      },
-      {
-        "mark": {
-          "type": "text",
-          "color": "black",
-          "font": "Candara",
-          "fontSize": 20,
-          "dx": -20,
-          "dy": -130,
-          "text": " "
-        }
-      }
-    ],
-    "config": {
-      "style": {
-        "guide-label": {
-          "font": "Candara",
-          "fontSize": 20
-        },
-        "guide-title": {
-          "font": "Candara",
-          "fontSize": 20
-        },
-        "text": {
-          "font": "Candara",
-          "fontSize": 20
-        }
-      },
-      "view": {
-        "fill": "azure"
-      },
-      "title": {
-        "font": "Candara",
-        "fontSize": 25
-      },
-      "background": "snow"
-    }
-    }
-  ]
 }

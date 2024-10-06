@@ -1,0 +1,76 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {
+    "text": "Rank of Crime Rate per 1000 Population by State",
+    "font": "Candara",
+    "fontSize": 25
+  },
+  "width": 400,
+  "height": 600,
+  "data": {
+    "url": "https://raw.githubusercontent.com/ChinSuetYuen/FIT3179/refs/heads/main/DV2_Draft1/barlink.csv",
+    "format": { "type": "csv" }
+  },
+  "transform": [{ "filter": "datum.State == 'Johor'" }],
+  "mark": "bar",
+  "encoding": {
+    "y": {
+      "field": "CrimeType",
+      "type": "nominal",
+      "axis": {
+        "labelFont": "Candara",
+        "titleFont": "Candara",
+        "title": "State",
+        "labelAngle": 0
+      },
+      "scale": {
+        "domain": [
+          "Sexual Violence",
+          "Assault",
+          "Murder",
+          "Robbery",
+          "House break-ins",
+          "Vehicles Theft",
+          "Other Thefts"
+        ]
+      }
+    },
+    "x": {
+      "field": "Count",
+      "type": "quantitative",
+      "axis": {
+        "labelFont": "Candara",
+        "titleFont": "Candara",
+        "title": "Average Crime Rate"
+      }
+    },
+    "color": {
+      "field": "CrimeType",
+      "scale": {
+        "domain": [
+          "Sexual Violence",
+          "Assault",
+          "Murder",
+          "Robbery",
+          "House break-ins",
+          "Vehicles Theft",
+          "Other Thefts"
+        ],
+        "range": [
+          "#fcbba1",
+          "#ef3b2c",
+          "#99000d",
+          "#cccccc",
+          "#969696",
+          "#636363",
+          "#252525"
+        ]
+      }
+    },
+    "tooltip": [
+      { "field": "CrimeType", "type": "nominal", "title": "Crime Type: " },
+      { "field": "Count", "type": "quantitative", "title": "Count: " },
+      { "field" : "State", "type": "nominal", "title": "State: " }
+    ]
+  }
+}
