@@ -512,7 +512,7 @@
             },
             {
               "width": 300,
-              "height": 290,
+              "height": 260,
               "data": {
                 "url": "funfacts.csv",
                 "format": { "type": "csv" }
@@ -522,14 +522,14 @@
                 "align": "center",
                 "baseline": "line-top",
                 "fontWeight": "bold",
-                "dy": -130
+                "dy": -110
               },
               "transform": [
                 {
                   "filter": "datum.State == staterank.State"
                 },
                 {
-                  "calculate": "'Crime Rate of ' + datum['State'] + ';' + datum['FunFact']",
+                  "calculate": "'Crime Rate of ' + datum['State'] + ';;' + datum['FunFact']",
                   "as": "text_annotation_raw"
                 },
                 {
@@ -539,7 +539,7 @@
               ],
 
               "encoding": {
-                "text": { "field": "text_annotation" }
+                "text": {"field": "text_annotation"}
               }
             }
           ],
