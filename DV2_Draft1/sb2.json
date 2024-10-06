@@ -1,7 +1,7 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "title": {
-    "text": "Reminder To Take Note of One's Personal Hygiene as a Criminal For Clean Gateaways: Crime Rate in Malaysia through the Years",
+    "text": "Always Keep Things Spotless To Ensure A Clean Gateaway: Crime Rates in Malaysia per 1000 Population by State!",
     "font": "Candara",
     "fontSize": 25,
     "anchor": "middle",
@@ -17,6 +17,35 @@
         "format": { "type": "topojson", "feature": "my" }
       },
       "layer": [
+        {
+          "data": {
+            "url": "https://raw.githubusercontent.com/ChinSuetYuen/FIT3179/refs/heads/main/DV2_Draft1/map.csv",
+            "format": { "type": "csv" }
+          },
+          "mark": {
+            "type": "text",
+            "align": "center",
+            "fontWeight": "bold",
+            "dy" : -200
+          },
+          "transform": [
+            {
+              "filter": "datum.State == staterank.State"
+            },
+            {
+              "calculate": "'Crime Rate of ' + datum['State'] + ';' + datum['CrimeRate']",
+              "as": "text_annotation_raw"
+            },
+            {
+              "calculate": "split(datum.text_annotation_raw, ';')",
+              "as": "text_annotation"
+            }
+          ],
+
+          "encoding": {
+            "text": { "field": "text_annotation" }
+          }
+        },
         {
           "transform": [
             { "filter": "datum.State != 'Malaysia'" },
@@ -81,7 +110,7 @@
               "legend": {
                 "title": "Crime Rate",
                 "orient": "right",
-                "offset": -50,
+                "offset": -150,
                 "format": ".2f",
                 "labelOffset": 40
               }
@@ -446,7 +475,6 @@
                 },
                 "color": {
                   "field": "CrimeType",
-                  "legend": null,
                   "scale": {
                     "domain": [
                       "Sexual Violence",
@@ -484,22 +512,28 @@
             },
             {
               "width": 300,
-              "height": 50,
+              "height": 290,
               "data": {
-                "url": "https://raw.githubusercontent.com/ChinSuetYuen/FIT3179/refs/heads/main/DV2_Draft1/map.csv",
+                "url": "funfacts.csv",
                 "format": { "type": "csv" }
               },
               "mark": {
                 "type": "text",
                 "align": "center",
-                "fontWeight": "bold"
+                "baseline": "line-top",
+                "fontWeight": "bold",
+                "dy": -130
               },
               "transform": [
                 {
                   "filter": "datum.State == staterank.State"
                 },
                 {
-                  "calculate": "'Crime Rate of ' + datum['State'] + ': ' + datum['CrimeRate']",
+                  "calculate": "'Crime Rate of ' + datum['State'] + ';' + datum['FunFact']",
+                  "as": "text_annotation_raw"
+                },
+                {
+                  "calculate": "split(datum.text_annotation_raw, ';')",
                   "as": "text_annotation"
                 }
               ],
@@ -509,7 +543,7 @@
               }
             }
           ],
-          "spacing": 20
+          "spacing": 30
         }
       ],
       "resolve": {
