@@ -1,7 +1,7 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "title": {
-    "text": "Reminder To Take Note of One's Personal Hygiene as a Criminal For Clean Gateaways: Crime Rate in Malaysia through the Years",
+    "text": "Always Keep Things Spotless To Ensure A Clean Gateaway: Crime Rates in Malaysia per 1000 Population by State",
     "font": "Candara",
     "fontSize": 25,
     "anchor": "middle",
@@ -81,7 +81,6 @@
               "legend": {
                 "title": "Crime Rate",
                 "orient": "right",
-                "offset": -50,
                 "format": ".2f",
                 "labelOffset": 40
               }
