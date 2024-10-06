@@ -1,0 +1,106 @@
+﻿State,CrimeType,Count
+Johor,House break-ins,767
+Johor,Other Thefts,1041
+Johor,Vehicles Theft,1681
+Johor,Murder,30
+Johor,Sexual Violence,147
+Johor,Robbery,463
+Johor,Assault,333
+Kedah,House break-ins,1130
+Kedah,Other Thefts,1360
+Kedah,Vehicles Theft,1268
+Kedah,Murder,15
+Kedah,Sexual Violence,159
+Kedah,Robbery,417
+Kedah,Assault,302
+Kelantan,House break-ins,472
+Kelantan,Other Thefts,545
+Kelantan,Vehicles Theft,741
+Kelantan,Murder,6
+Kelantan,Sexual Violence,98
+Kelantan,Robbery,129
+Kelantan,Assault,215
+Melaka,House break-ins,375
+Melaka,Other Thefts,404
+Melaka,Vehicles Theft,254
+Melaka,Murder,5
+Melaka,Sexual Violence,59
+Melaka,Robbery,75
+Melaka,Assault,125
+Negeri Sembilan,House break-ins,382
+Negeri Sembilan,Other Thefts,594
+Negeri Sembilan,Vehicles Theft,428
+Negeri Sembilan,Murder,9
+Negeri Sembilan,Sexual Violence,65
+Negeri Sembilan,Robbery,153
+Negeri Sembilan,Assault,153
+Pahang,House break-ins,423
+Pahang,Other Thefts,648
+Pahang,Vehicles Theft,418
+Pahang,Murder,11
+Pahang,Sexual Violence,118
+Pahang,Robbery,74
+Pahang,Assault,192
+Perak,House break-ins,724
+Perak,Other Thefts,924
+Perak,Vehicles Theft,842
+Perak,Murder,27
+Perak,Sexual Violence,100
+Perak,Robbery,320
+Perak,Assault,323
+Perlis,House break-ins,101
+Perlis,Other Thefts,156
+Perlis,Vehicles Theft,63
+Perlis,Murder,0
+Perlis,Sexual Violence,31
+Perlis,Robbery,18
+Perlis,Assault,33
+Pulau Pinang,House break-ins,627
+Pulau Pinang,Other Thefts,1017
+Pulau Pinang,Vehicles Theft,872
+Pulau Pinang,Murder,10
+Pulau Pinang,Sexual Violence,124
+Pulau Pinang,Robbery,408
+Pulau Pinang,Assault,405
+Sabah,House break-ins,1297
+Sabah,Other Thefts,1765
+Sabah,Vehicles Theft,523
+Sabah,Murder,24
+Sabah,Sexual Violence,197
+Sabah,Robbery,126
+Sabah,Assault,169
+Sarawak,House break-ins,891
+Sarawak,Other Thefts,1421
+Sarawak,Vehicles Theft,987
+Sarawak,Murder,22
+Sarawak,Sexual Violence,119
+Sarawak,Robbery,141
+Sarawak,Assault,306
+Selangor,House break-ins,2415
+Selangor,Other Thefts,3536
+Selangor,Vehicles Theft,4254
+Selangor,Murder,60
+Selangor,Sexual Violence,354
+Selangor,Robbery,1565
+Selangor,Assault,841
+Terengganu,House break-ins,439
+Terengganu,Other Thefts,545
+Terengganu,Vehicles Theft,270
+Terengganu,Murder,4
+Terengganu,Sexual Violence,66
+Terengganu,Robbery,51
+Terengganu,Assault,102
+Kuala Lumpur,House break-ins,542
+Kuala Lumpur,Other Thefts,1478
+Kuala Lumpur,Vehicles Theft,1845
+Kuala Lumpur,Murder,17
+Kuala Lumpur,Sexual Violence,75
+Kuala Lumpur,Robbery,649
+Kuala Lumpur,Assault,308
+Malaysia,House break-ins,10585
+Malaysia,Other Thefts,15434
+Malaysia,Vehicles Theft,14446
+Malaysia,Murder,240
+Malaysia,Sexual Violence,1712
+Malaysia,Robbery,4589
+Malaysia,Assault,3807
