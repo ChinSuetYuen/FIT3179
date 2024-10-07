@@ -35,6 +35,11 @@ body {
   text-align: center;
 }
 
+.vizzy{
+  width: 86%;
+  margin: 0 auto;
+}
+
 .paratext {
   width: 83%;
   margin: 0 auto;
@@ -88,7 +93,7 @@ body {
 }
 
 .page {
-  width: 1600px;
+  width: 1700px;
   background-color: snow;
   margin: auto;
   padding: 50px;
