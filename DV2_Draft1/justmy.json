@@ -1,0 +1,86 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {
+    "text": "Remember to Take Care of Your Personal Hygiene For Clean Gateaways: Crime Rate in Malaysia through the Years",
+    "font": "Candara",
+    "fontSize": 25,
+    "anchor": "middle",
+    "align": "center"
+  },
+  "vconcat": [
+    {
+      "title": " ",
+      "width": 500,
+      "height": 200,
+      "data": {
+        "url": "https://raw.githubusercontent.com/ChinSuetYuen/FIT3179/refs/heads/main/DV2_Draft1/mycrimet.csv",
+        "format": { "type": "csv" }
+      },
+      "layer": [
+        {
+          "mark": "line",
+          "params": [
+            {
+              "name": "year_selection",
+              "select": { "type": "point", "fields": ["Year"] }
+            }
+          ],
+          "encoding": {
+            "y": {
+              "field": "CrimeRate",
+              "type": "quantitative",
+              "title": "Malaysia's Crime Rate"
+            },
+            "x": {
+              "field": "Year",
+              "type": "ordinal",
+              "axis": {
+                "labelFont": "Candara",
+                "titleFont": "Candara",
+                "title": "Year"
+              }
+            },
+            "color": {
+              "value": "firebrick"
+            },
+            "tooltip": [
+              { "field": "State", "type": "nominal", "title": "State" },
+              { "field": "Year", "type": "quantitative", "title": "Year" }
+            ]
+          }
+        },
+        {
+          "mark": { "type": "point", "filled": true, "size": 100 },
+          "encoding": {
+            "y": { "field": "CrimeRate", "type": "quantitative" },
+            "x": {
+              "field": "Year",
+              "type": "ordinal",
+              "axis": {
+                "labelFont": "Candara",
+                "titleFont": "Candara",
+                "title": "Year"
+              }
+            },
+            "color": {
+              "value": "firebrick"
+            },
+            "tooltip": [
+              {
+                "field": "Total",
+                "type": "quantitative",
+                "title": "Total Crime:"
+              },
+              { "field": "Year", "type": "quantitative", "title": "Year:" },
+              {
+                "field": "CrimeRate",
+                "type": "quantitative",
+                "title": "Crime Rate:"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

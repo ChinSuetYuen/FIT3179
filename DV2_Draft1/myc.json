@@ -1,26 +1,172 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "data": {
-    "url": "fullcrime.csv"
+  "title": {
+    "text": "When Going Downhill is Safer for the General Populace: Crime Rate in Malaysia through the Years",
+    "font": "Candara",
+    "fontSize": 25,
+    "anchor": "middle",
+    "align": "center"
   },
-  "mark": "line",
-  "encoding": {
-    "x": { "field": "State", "type": "nominal" },
-    "y": { "field": "Year", "type": "quantitative" },
-    "tooltip": [
-      { "field": "State", "type": "nominal", "title": "State" },
-      {
-        "field": "TotalCrime",
-        "type": "quantitative",
-        "title": "Total Crimes"
+  "hconcat": [
+    {
+      "title": " ",
+      "width": 500,
+      "height": 200,
+      "data": {
+        "url": "https://raw.githubusercontent.com/ChinSuetYuen/FIT3179/refs/heads/main/DV2_Draft1/mycrimet.csv",
+        "format": { "type": "csv" }
       },
-      { "field": "Year", "type": "quantitative", "title": "Year" },
-      {
-        "field": "TotalCrime / Population",
-        "type": "quantitative",
-        "format": ".2f",
-        "title": "Crime Rate per 1000"
-      }
-    ]
-  }
+      "transform": [{ "filter": "datum.Year != 'Total'" }],
+      "layer": [
+        {
+          "mark": "line",
+          "encoding": {
+            "y": {
+              "field": "CrimeRate",
+              "type": "quantitative",
+              "title": "Malaysia's Crime Rate"
+            },
+            "x": {
+              "field": "Year",
+              "type": "ordinal",
+              "axis": {
+                "labelFont": "Candara",
+                "titleFont": "Candara",
+                "title": "Year"
+              }
+            },
+            "color": {
+              "value": "firebrick"
+            },
+            "tooltip": [
+              { "field": "State", "type": "nominal", "title": "State" },
+              { "field": "Year", "type": "quantitative", "title": "Year" }
+            ]
+          }
+        },
+        {
+          "mark": { "type": "point", "filled": true, "size": 100 },
+          "params": [
+            {
+              "name": "year_selection",
+              "select": { "type": "point", "fields": ["Year"] }
+            }
+          ],
+          "encoding": {
+            "opacity": {
+              "condition": { "param": "year_selection", "value": 1 },
+              "value": 0.1
+            },
+
+            "y": { "field": "CrimeRate", "type": "quantitative" },
+            "x": {
+              "field": "Year",
+              "type": "ordinal",
+              "axis": {
+                "labelFont": "Candara",
+                "titleFont": "Candara",
+                "title": "Year"
+              }
+            },
+            "color": {
+              "condition": { "param": "year_selection", "value": "darkred" },
+              "value": "firebrick"
+            },
+            "tooltip": [
+              {
+                "field": "Total",
+                "type": "quantitative",
+                "title": "Total Crime:"
+              },
+              { "field": "Year", "type": "quantitative", "title": "Year:" },
+              {
+                "field": "CrimeRate",
+                "type": "quantitative",
+                "title": "Crime Rate:"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "title": " ",
+      "width": 500,
+      "height": 200,
+      "data": {
+        "url": "https://raw.githubusercontent.com/ChinSuetYuen/FIT3179/refs/heads/main/DV2_Draft1/mycrimet.csv",
+        "format": { "type": "csv" }
+      },
+      "transform": [
+        {
+          "filter": "datum.Year == (year_selection.Year? year_selection.Year: 'Total')"
+        }
+      ],
+      "layer": [
+        {
+          "mark": "bar",
+          "encoding": {
+            "x": {
+              "field": "Count",
+              "aggregate": "sum",
+              "type": "quantitative",
+              "title": "Count"
+            },
+            "y": {
+              "field": "CrimeGroup",
+              "type": "ordinal",
+              "axis": {
+                "labelFont": "Candara",
+                "titleFont": "Candara",
+                "title": "Type of Crime"
+              },
+              "scale": {
+                "domain": [
+                  "Sexual Violence",
+                  "Assault",
+                  "Murder",
+                  "Robbery",
+                  "House break-ins",
+                  "Vehicles Theft",
+                  "Other Thefts"
+                ]
+              }
+            },
+            "color": {
+              "field": "CrimeGroup",
+              "scale": {
+                "domain": [
+                  "Sexual Violence",
+                  "Assault",
+                  "Murder",
+                  "Robbery",
+                  "House break-ins",
+                  "Vehicles Theft",
+                  "Other Thefts"
+                ],
+                "range": [
+                  "#fcbba1",
+                  "#ef3b2c",
+                  "#99000d",
+                  "#cccccc",
+                  "#969696",
+                  "#636363",
+                  "#252525"
+                ]
+              }
+            },
+            "tooltip": [
+              { "field": "Year", "type": "ordinal", "title": "Year: " },
+              {
+                "field": "CrimeGroup",
+                "type": "ordinal",
+                "title": "Type Of Crime: "
+              },
+              { "field": "Count", "type": "quantitative", "title": "Count: " }
+            ]
+          }
+        }
+      ]
+    }
+  ]
 }

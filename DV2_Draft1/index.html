@@ -119,14 +119,23 @@
         <div id="bubbVis2" class="vis-container"></div>
       </div>
     </div>
+    </div>-->
+    <div class="pure-g">
+      <div class="pure-u-1-1">
+        <div id="myc" class="vis-container"></div>
+        <p class="paratext">
+          Fun Fact: There's exactly <b class="redtext">0</b> murders in Perlis!
+        </p>
+      </div>
     </div>
-  </div> --><!-- end page -->
+  </div> <!-- end page -->
 
   <script type="text/javascript">
     var specVis1 = "sb2.json";
     var bubbVis1 = "bubble2022.json";
     var bubbVis2 = "bubb2022.json";
     var bump = "bump.json";
+    var myc = "myc.json"
 
     vegaEmbed('#mycrime', specVis1, { "actions": false }).then(function (result) {
     }).catch(console.error);
@@ -138,6 +147,9 @@
     }).catch(console.error);
 
     vegaEmbed('#bump', bump, { "actions": false }).then(function (result) {
+    }).catch(console.error);
+
+    vegaEmbed('#myc', myc, { "actions": false }).then(function (result) {
     }).catch(console.error);
   </script>
 </body>

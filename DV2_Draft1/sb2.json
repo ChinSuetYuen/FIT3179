@@ -238,7 +238,7 @@
           "width": 700,
           "height": 500,
           "data": {
-            "url": "https://raw.githubusercontent.com/ChinSuetYuen/FIT3179/refs/heads/main/DV2_Draft1/crime.csv"
+            "url": "crime.csv"
           },
           "transform": [
             {
@@ -309,6 +309,7 @@
                   {
                     "field": "CrimeRate",
                     "type": "quantitative",
+                    "format": ".0f",
                     "title": "Crime Rate"
                   },
                   { "field": "Rank", "type": "quantitative", "title": "Rank" }
@@ -379,6 +380,7 @@
                   {
                     "field": "CrimeRate",
                     "type": "quantitative",
+                    "format": ".0f",
                     "title": "Crime Rate"
                   },
                   { "field": "Rank", "type": "quantitative", "title": "Rank" }
