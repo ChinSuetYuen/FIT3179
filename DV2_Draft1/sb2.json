@@ -1,7 +1,7 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "title": {
-    "text": "Always Keep Things Spotless To Ensure A Clean Gateaway: Crime Rates in Malaysia per 1000 Population by State!",
+    "text": "Always Keep Things Spotless To Ensure A Clean Gateaway: Crime Rates in Malaysia by State!",
     "font": "Candara",
     "fontSize": 25,
     "anchor": "middle",
@@ -125,7 +125,7 @@
               {
                 "field": "CrimeRate",
                 "type": "quantitative",
-                "title": "Crime Rate per 10,000"
+                "title": "Crime Rate"
               }
             ]
           }
@@ -231,7 +231,7 @@
       "hconcat": [
         {
           "title": {
-            "text": "Rank of Crime Rate per 1000 Population by State",
+            "text": "Rank of Crime Rate Population by State",
             "font": "Candara",
             "fontSize": 25
           },
@@ -379,7 +379,7 @@
                   {
                     "field": "CrimeRate",
                     "type": "quantitative",
-                    "title": "Crime Rate per 1000"
+                    "title": "Crime Rate"
                   },
                   { "field": "Rank", "type": "quantitative", "title": "Rank" }
                 ]
