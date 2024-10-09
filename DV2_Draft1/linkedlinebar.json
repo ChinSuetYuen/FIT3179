@@ -171,5 +171,29 @@
         }
       ]
     }
-  ]
+  ],
+  "config": {
+    "style": {
+      "guide-label": {
+        "font": "Candara",
+        "fontSize": 20
+      },
+      "guide-title": {
+        "font": "Candara",
+        "fontSize": 20
+      },
+      "text": {
+        "font": "Candara",
+        "fontSize": 20
+      }
+    },
+    "view": {
+      "fill": "#faffff"
+    },
+    "title": {
+      "font": "Candara",
+      "fontSize": 25
+    },
+    "background": "snow"
+  }
 }
