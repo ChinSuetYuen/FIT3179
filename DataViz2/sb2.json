@@ -235,7 +235,7 @@
             "font": "Candara",
             "fontSize": 25
           },
-          "width": 700,
+          "width": 650,
           "height": 500,
           "data": {
             "url": "crime.csv"
@@ -395,7 +395,7 @@
                 "font": "Candara",
                 "fontSize": 15,
                 "dy": -22,
-                "dx": -340
+                "dx": -320
               },
               "transform": [{ "filter": "datum.Year == 2015" }],
               "encoding": {
@@ -431,7 +431,7 @@
                     "fontSize": 25,
                     "anchor": "start"
                   },
-                  "width": 300,
+                  "width": 350,
                   "height": 300,
                   "data": {
                     "url": "https://raw.githubusercontent.com/ChinSuetYuen/FIT3179/refs/heads/main/DV2_Draft1/barlink.csv",
@@ -439,7 +439,7 @@
                   },
                   "transform": [
                     {
-                      "filter": "datum.State == staterank.State"
+                      "filter": "datum.State == staterank.State "
                     }
                   ],
                   "params": [

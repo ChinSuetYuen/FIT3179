@@ -10,7 +10,7 @@
   "hconcat": [
     {
       "title": " ",
-      "width": 700,
+      "width": 650,
       "height": 300,
       "data": {
         "url": "https://raw.githubusercontent.com/ChinSuetYuen/FIT3179/refs/heads/main/DV2_Draft1/mycrimet.csv",
@@ -153,7 +153,7 @@
             "baseline": "line-bottom",
             "fontSize": 15,
             "dy": 90,
-            "dx": -330
+            "dx": -300
           },
           "transform": [
             {
@@ -180,7 +180,7 @@
             "baseline": "line-bottom",
             "fontSize": 70,
             "dy": -40,
-            "dx": 290,
+            "dx": 270,
             "text": "↓",
             "color": "red"
           },
@@ -198,7 +198,7 @@
             "baseline": "line-bottom",
             "fontSize": 20,
             "dy": -65,
-            "dx": 240,
+            "dx": 220,
             "text": "reduce",
             "color": "red"
           },
@@ -213,7 +213,7 @@
     },
     {
       "title": " ",
-      "width": 300,
+      "width": 350,
       "height": 300,
       "data": {
         "url": "https://raw.githubusercontent.com/ChinSuetYuen/FIT3179/refs/heads/main/DV2_Draft1/mycrimet.csv",
@@ -295,7 +295,7 @@
             "baseline": "line-bottom",
             "fontSize": 18,
             "dy": -120,
-            "dx": 130,
+            "dx": 170,
             "color": "maroon"
           },
           "transform": [
