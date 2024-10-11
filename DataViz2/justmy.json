@@ -1,7 +1,7 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "title": {
-    "text": "When Going Downhill is Safer Crime Rate in Malaysia through the Years",
+    "text": "When Going Downhill is Safer: Crime Rate in Malaysia through the Years",
     "font": "Candara",
     "fontSize": 25,
     "anchor": "middle",

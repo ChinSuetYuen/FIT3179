@@ -546,7 +546,7 @@
                     "dy": -130,
                     "dx": 130,
                     "fontWeight": "bold",
-                    "text": " "
+                    "text": " Select a State for a Fun Fact!"
                   },
                   "transform": [
                     { "filter": "datum.CrimeType == crimebar.CrimeType" },
@@ -563,10 +563,10 @@
                     }
                   ],
                   "encoding": {
-                    "text": { "field": "text_annotation" },
+                    "text": { "condition": { "param": "crimebar", "field": "text_annotation" },
+                      "value": "Select a State for a Fun Fact!"},
                     "fill": {
-                      "condition": { "param": "crimebar", "value": "black" },
-                      "value": "snow"
+                      "value": "black"
                     }
                   }
                 }
