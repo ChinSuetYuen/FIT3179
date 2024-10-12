@@ -10,7 +10,7 @@
   "hconcat": [
     {
       "title": " ",
-      "width": 650,
+      "width": 510,
       "height": 300,
       "data": {
         "url": "https://raw.githubusercontent.com/ChinSuetYuen/FIT3179/refs/heads/main/DV2_Draft1/mycrimet.csv",
@@ -152,8 +152,8 @@
             "align": "left",
             "baseline": "line-bottom",
             "fontSize": 15,
-            "dy": 90,
-            "dx": -300
+            "dy": 100,
+            "dx": -240
           },
           "transform": [
             {
@@ -180,7 +180,7 @@
             "baseline": "line-bottom",
             "fontSize": 70,
             "dy": -40,
-            "dx": 270,
+            "dx": 210,
             "text": "↓",
             "color": "red"
           },
@@ -198,7 +198,7 @@
             "baseline": "line-bottom",
             "fontSize": 20,
             "dy": -65,
-            "dx": 220,
+            "dx": 160,
             "text": "reduce",
             "color": "red"
           },
@@ -213,7 +213,7 @@
     },
     {
       "title": " ",
-      "width": 350,
+      "width": 280,
       "height": 300,
       "data": {
         "url": "https://raw.githubusercontent.com/ChinSuetYuen/FIT3179/refs/heads/main/DV2_Draft1/mycrimet.csv",
@@ -295,7 +295,7 @@
             "baseline": "line-bottom",
             "fontSize": 18,
             "dy": -120,
-            "dx": 170,
+            "dx": 130,
             "color": "maroon"
           },
           "transform": [
@@ -329,7 +329,7 @@
             {"filter": "datum.CrimeGroup != 'Vehicles Theft'"}
           ],
           "encoding": {
-            "text": { "field": "Count" },
+            "text": { "field": "Count" , "format": ","},
             "x": {
               "field": "Count",
               "aggregate": "sum",
@@ -371,7 +371,7 @@
             {"filter": "datum.CrimeGroup == 'Other Thefts' || datum.CrimeGroup == 'Vehicles Theft'"}
           ],
           "encoding": {
-            "text": { "field": "Count" },
+            "text": { "field": "Count" , "format": ","},
             "x": {
               "field": "Count",
               "aggregate": "sum",
@@ -408,15 +408,15 @@
     "style": {
       "guide-label": {
         "font": "Candara",
-        "fontSize": 20
+        "fontSize": 16
       },
       "guide-title": {
         "font": "Candara",
-        "fontSize": 20
+        "fontSize": 16
       },
       "text": {
         "font": "Candara",
-        "fontSize": 20
+        "fontSize": 16
       }
     },
     "view": {
@@ -424,7 +424,7 @@
     },
     "title": {
       "font": "Candara",
-      "fontSize": 25
+      "fontSize": 20
     },
     "background": "snow"
   }

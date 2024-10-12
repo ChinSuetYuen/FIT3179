@@ -10,7 +10,7 @@
   "hconcat": [
     {
       "title": " ",
-      "width": 700,
+      "width": 520,
       "height": 300,
       "data": {
         "url": "https://raw.githubusercontent.com/ChinSuetYuen/FIT3179/refs/heads/main/DV2_Draft1/mycrimet.csv",
@@ -213,7 +213,7 @@
     },
     {
       "title": " ",
-      "width": 300,
+      "width": 200,
       "height": 300,
       "data": {
         "url": "https://raw.githubusercontent.com/ChinSuetYuen/FIT3179/refs/heads/main/DV2_Draft1/mycrimet.csv",
