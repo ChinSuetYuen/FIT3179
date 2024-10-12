@@ -1,7 +1,7 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "title": {
-    "text": "Always Keep Things Spotless To Ensure A Clean Gateaway: Crime Rates in Malaysia by State!",
+    "text": "Always Keep Things Spotless To Ensure A Clean Gateaway: Crime Rates in Malaysia by State",
     "font": "Candara",
     "fontSize": 25,
     "anchor": "middle",
@@ -9,7 +9,7 @@
   },
   "vconcat": [
     {
-      "width": 1200,
+      "width": 800,
       "height": 400,
       "projection": { "type": "equalEarth" },
       "data": {
@@ -97,7 +97,7 @@
               "type": "quantitative",
               "scale": {
                 "type": "threshold",
-                "domain": [125, 150, 175, 200, 250],
+                "domain": [120, 135, 150, 175, 200],
                 "range": [
                   "#fee5d9",
                   "#fcbba1",
@@ -235,7 +235,7 @@
             "font": "Candara",
             "fontSize": 25
           },
-          "width": 650,
+          "width": 450,
           "height": 500,
           "data": {
             "url": "crime.csv"
@@ -431,7 +431,7 @@
                     "fontSize": 25,
                     "anchor": "start"
                   },
-                  "width": 350,
+                  "width": 150,
                   "height": 300,
                   "data": {
                     "url": "https://raw.githubusercontent.com/ChinSuetYuen/FIT3179/refs/heads/main/DV2_Draft1/barlink.csv",
@@ -573,7 +573,7 @@
               ]
             },
             {
-              "width": 350,
+              "width": 150,
               "height": 150,
               "data": {
                 "url": "https://raw.githubusercontent.com/ChinSuetYuen/FIT3179/refs/heads/main/DV2_Draft1/funfacts.csv",

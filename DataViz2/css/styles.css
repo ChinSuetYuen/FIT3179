@@ -1,6 +1,6 @@
 @font-face {
   font-family: 'StencilFont';
-  src: url('STENCIL.ttf') format('truetype');
+  src: url('Stencil.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
 }
@@ -27,28 +27,24 @@ body {
 
 
 .title {
-  width: 90%;
   margin: 0 auto;
-  font-size: 60px;
+  font-size: 54px;
   font-family: 'StencilFont', 'Candara';
   color: firebrick;
   text-align: center;
 }
 
 .vizzy{
-  width: 86%;
   margin: 0 auto;
 }
 
 .paratext {
-  width: 83%;
   margin: 0 auto;
   padding-top: 5px;
   font-family: 'Candara', sans-serif;
 }
 
 .center {
-  width: 83%;
   margin: 0 auto;
   padding-top: 10px;  
   text-align: center;
@@ -57,7 +53,6 @@ body {
 }
 
 .centerpara{
-  width: 83%;
   margin: 0 auto;
   padding-top: 5px;
   font-family: 'Candara', sans-serif;
@@ -65,7 +60,6 @@ body {
 }
 
 .heading {
-  width: 83%;
   padding-top: 10px;
   margin: 0 auto;
   font-size: 30px;
@@ -93,7 +87,7 @@ body {
 }
 
 .page {
-  width: 1700px;
+  width: 1200px;
   background-color: snow;
   margin: auto;
   padding: 50px;
