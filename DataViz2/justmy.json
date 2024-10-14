@@ -69,13 +69,13 @@
               {
                 "field": "Total",
                 "type": "quantitative",
-                "title": "Total Crime:"
+                "title": "Total Crime"
               },
-              { "field": "Year", "type": "quantitative", "title": "Year:" },
+              { "field": "Year", "type": "quantitative", "title": "Year" },
               {
                 "field": "CrimeRate",
                 "type": "quantitative",
-                "title": "Crime Rate:"
+                "title": "Crime Rate"
               }
             ]
           }
@@ -309,13 +309,13 @@
               }
             },
             "tooltip": [
-              { "field": "Year", "type": "ordinal", "title": "Year: " },
+              { "field": "Year", "type": "ordinal", "title": "Year" },
               {
                 "field": "CrimeGroup",
                 "type": "ordinal",
-                "title": "Type Of Crime: "
+                "title": "Type Of Crime"
               },
-              { "field": "Count", "type": "quantitative", "title": "Count: " }
+              { "field": "Count", "type": "quantitative", "title": "Count" }
             ]
           }
         },

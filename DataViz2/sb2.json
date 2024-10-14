@@ -553,12 +553,12 @@
                       {
                         "field": "CrimeType",
                         "type": "nominal",
-                        "title": "Crime Type: "
+                        "title": "Crime Type"
                       },
                       {
                         "field": "Count",
                         "type": "quantitative",
-                        "title": "Count: "
+                        "title": "Count"
                       }
                     ]
                   }

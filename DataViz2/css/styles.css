@@ -79,7 +79,7 @@ body {
   border: 1px solid #ccc; 
   border-radius: 4px;
   z-index: 1000;
-  transform: translate(45px, 45px); 
+  transform: translate(10px, 10px); 
   font-size: 15px !important;
 }
 
