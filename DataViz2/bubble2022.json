@@ -1,65 +1,169 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "title": {
-    "text": "Crime Data by State (2022)",
+    "text": "Bubbling up the Crime for All of Malaysia's States in the Year 2022",
     "font": "Candara",
     "fontSize": 25
   },
-  "width": 420,
+  "width": 880,
   "height": 400,
   "data": {
     "url": "bubb.csv"
   },
-  "mark": "circle",
-  "encoding": {
-    "x": {
-      "field": "Crime",
-      "type": "nominal",
-      "title": "Crime Type",
-      "scale": {
-        "domain": ["Sexual Violence", "Assault", "Murder", "Robbery", "House break-ins", "Vehicles Theft", "Other Thefts"]
+  "layer": [
+    {
+      "mark": {
+        "type": "text",
+        "align": "right",
+        "baseline": "line-bottom",
+        "fontSize": 18,
+        "dy": -70,
+        "dx": 170,
+        "color": "darkred",
+        "text": "0 murders in Perlis"
       }
     },
-    "y": {
-      "field": "State",
-      "type": "nominal",
-      "title": "State"
-    },
-    "size": {
-      "field": "Count",
-      "type": "quantitative",
-      "title": "Count",
-      "scale": { "range": [100, 3000] }
-    },
-    "color": {
-      "field": "Crime",
-      "type": "nominal",
-      "legend": { "title": "Crime Type" },
-      "scale": {
-        "domain": ["Sexual Violence", "Assault", "Murder", "Robbery", "House break-ins", "Vehicles Theft", "Other Thefts"],
-        "range": ["#fcbba1", "#ef3b2c", "#99000d", "#cccccc", "#969696", "#636363", "#252525"]
-
+    {
+      "mark": {
+        "type": "text",
+        "align": "right",
+        "baseline": "line-bottom",
+        "fontSize": 20,
+        "dy": -45,
+        "dx": 105,
+        "color": "blue",
+        "text": "◯"
+      },
+      "encoding": {
+        "tooltip": {"value": "0 murders in Perlis"}
       }
     },
-    "tooltip": [
-      { "field": "State", "type": "nominal", "title": "State" },
-      { "field": "Crime", "type": "nominal", "title": "Crime Type" },
-      { "field": "Count", "type": "quantitative", "title": "Total Count" }
-    ]
-  },
+    {
+      "mark": {
+        "type": "text",
+        "align": "right",
+        "baseline": "line-bottom",
+        "fontSize": 420,
+        "dy": 200,
+        "dx": 440,
+        "color": "lightblue",
+        "text": "┃"
+      },
+      "encoding": {
+        "tooltip": {"value": "Selangor with highest number of Crimes"}
+      }
+    },
+    {
+      "mark": {
+        "type": "text",
+        "align": "right",
+        "baseline": "line-bottom",
+        "fontSize": 420,
+        "dy": 200,
+        "dx": 465,
+        "color": "lightblue",
+        "text": "┃"
+      },
+      "encoding": {
+        "tooltip": {"value": "Selangor with highest number of Crimes"}
+      }
+    },
+    {
+      "mark": {
+        "type": "text",
+        "align": "right",
+        "baseline": "line-bottom",
+        "fontSize": 18,
+        "dy": -180,
+        "dx": 440,
+        "color": "darkblue",
+        "text": "Selangor with highest number of Crimes"
+      }
+    },
+    {
+      "mark": "circle",
+      "encoding": {
+        "y": {
+          "field": "Crime",
+          "type": "nominal",
+          "title": "Type of Crime",
+          "scale": {
+            "domain": [
+              "Sexual Violence",
+              "Assault",
+              "Murder",
+              "Robbery",
+              "House break-ins",
+              "Vehicles Theft",
+              "Other Thefts"
+            ]
+          }
+        },
+        "x": {
+          "field": "State",
+          "type": "nominal",
+          "title": "State"
+        },
+        "size": {
+          "field": "Count",
+          "type": "quantitative",
+          "title": "Count",
+          "scale": { "range": [100, 3000] }
+        },
+        "color": {
+          "field": "Crime",
+          "type": "nominal",
+          "legend": { "title": "Type of Crime" },
+          "scale": {
+            "domain": [
+              "Sexual Violence",
+              "Assault",
+              "Murder",
+              "Robbery",
+              "House break-ins",
+              "Vehicles Theft",
+              "Other Thefts"
+            ],
+            "range": [
+              "#fcbba1",
+              "#ef3b2c",
+              "#99000d",
+              "#cccccc",
+              "#969696",
+              "#636363",
+              "#252525"
+            ]
+          }
+        },
+        "tooltip": [
+          { "field": "State", "type": "nominal", "title": "State" },
+          { "field": "Crime", "type": "nominal", "title": "Type of Crime" },
+          { "field": "Count", "type": "quantitative", "title": "Total Count" }
+        ]
+      }
+    }
+  ],
   "config": {
-    "style" :{
+    "style": {
       "guide-label": {
         "font": "Candara",
-        "fontSize": 15
-      }, 
+        "fontSize": 16
+      },
       "guide-title": {
         "font": "Candara",
-        "fontSize": 20
+        "fontSize": 16
+      },
+      "text": {
+        "font": "Candara",
+        "fontSize": 16
       }
     },
-    "view" :{
+    "view": {
       "fill": "#faffff"
+    },
+    "title": {
+      "font": "Candara",
+      "fontSize": 20
     },
     "background": "snow"
   }
