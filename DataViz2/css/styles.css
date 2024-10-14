@@ -14,7 +14,6 @@
 body *{
   font-family: 'Candara', sans-serif;
   cursor: url('../knife.png'), auto;
-
 }
 
 h1 {
@@ -42,6 +41,7 @@ body {
   margin: 0 auto;
   padding-top: 5px;
   font-family: 'Candara', sans-serif;
+  text-align: justify;
 }
 
 .center {
@@ -65,7 +65,12 @@ body {
   font-size: 30px;
   font-weight: bold;
 }
-
+.vizheading {
+  margin: 0 auto;
+  font-size: 23px;
+  font-weight: bold;
+  text-align: center;
+}
 .vg-tooltip {
   position: absolute; 
   pointer-events: none; 

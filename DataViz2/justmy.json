@@ -1,12 +1,5 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "title": {
-    "text": "When Going Downhill is Safer: Crime Rate in Malaysia through the Years",
-    "font": "Candara",
-    "fontSize": 25,
-    "anchor": "middle",
-    "align": "center"
-  },
   "hconcat": [
     {
       "title": " ",
@@ -152,10 +145,11 @@
             "align": "left",
             "baseline": "line-bottom",
             "fontSize": 15,
-            "dy": 100,
+            "dy": 95,
             "dx": -240
           },
           "transform": [
+            { "filter": "datum.Year == 2022" },
             {
               "calculate": "'Crime Rate in Malaysia; has reduced by more; than half since 2015!'",
               "as": "text_annotation_raw"
@@ -174,6 +168,37 @@
           }
         },
         {
+          "data": {
+            "url": "law.csv",
+            "format": { "type": "csv" }
+          },
+          "mark": {
+            "type": "text",
+            "align": "left",
+            "baseline": "line-bottom",
+            "fontSize": 15,
+            "dy": 60,
+            "dx": -240,
+            "fontWeight":"bold"
+          },
+          "transform": [
+            {
+              "filter": "datum.Year  == year_selection.Year"
+            },
+            {
+              "calculate": " ';;' + datum['Fun']",
+              "as": "text_annotation_raw"
+            },
+            {
+              "calculate": "split(datum.text_annotation_raw, ';')",
+              "as": "text_annotation"
+            }
+          ],
+          "encoding": {
+            "text": { "field": "text_annotation" }
+          }
+        },
+        {
           "mark": {
             "type": "text",
             "align": "left",
@@ -184,6 +209,9 @@
             "text": "↓",
             "color": "red"
           },
+          "transform": [
+            { "filter": "datum.Year == 2022" }
+          ],
           "encoding": {
             "color": {
               "condition": { "param": "year_selection", "value": "red" },
@@ -202,6 +230,9 @@
             "text": "reduce",
             "color": "red"
           },
+          "transform": [
+            { "filter": "datum.Year == 2022" }
+          ],
           "encoding": {
             "color": {
               "condition": { "param": "year_selection", "value": "red" },
