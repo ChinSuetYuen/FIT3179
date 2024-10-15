@@ -315,7 +315,7 @@
                 "type": "ordinal",
                 "title": "Type Of Crime"
               },
-              { "field": "Count", "type": "quantitative", "title": "Count" }
+              { "field": "Count", "type": "quantitative", "title": "Total Crime" }
             ]
           }
         },

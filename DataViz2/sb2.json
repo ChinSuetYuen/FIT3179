@@ -143,11 +143,10 @@
             },
             "tooltip": [
               { "field": "properties.name", "title": "State" },
-              { "field": "Year", "type": "quantitative", "title": "Year" },
               {
                 "field": "TotalCrime",
                 "type": "quantitative",
-                "title": "Total Crimes"
+                "title": "Total Crime"
               },
               {
                 "field": "CrimeRate",
@@ -402,6 +401,7 @@
                   "value": 0.2
                 },
                 "tooltip": [
+                  { "field": "Rank", "type": "quantitative", "title": "Rank" },
                   { "field": "State", "type": "nominal", "title": "State" },
                   { "field": "Year", "type": "ordinal", "title": "Year" },
                   {
@@ -409,8 +409,7 @@
                     "type": "quantitative",
                     "format": ".0f",
                     "title": "Crime Rate"
-                  },
-                  { "field": "Rank", "type": "quantitative", "title": "Rank" }
+                  }
                 ]
               }
             },
@@ -558,7 +557,7 @@
                       {
                         "field": "Count",
                         "type": "quantitative",
-                        "title": "Count"
+                        "title": "Total Crime"
                       }
                     ]
                   }

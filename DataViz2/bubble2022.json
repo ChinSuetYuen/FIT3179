@@ -138,7 +138,7 @@
         "tooltip": [
           { "field": "State", "type": "nominal", "title": "State" },
           { "field": "Crime", "type": "nominal", "title": "Type of Crime" },
-          { "field": "Count", "type": "quantitative", "title": "Total Count" }
+          { "field": "Count", "type": "quantitative", "title": "Total Crime" }
         ]
       }
     }
